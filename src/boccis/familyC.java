@@ -12,4 +12,11 @@ package boccis;
 public class familyC {
     methodC mc = new methodC();
     dataC dc = new dataC();
+    
+    public boolean saveFamily(){
+        return true;
+    }
+    public boolean deleteFamily(){
+        return true;
+    }
 }
