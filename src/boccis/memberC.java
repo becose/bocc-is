@@ -114,5 +114,14 @@ public class memberC {
     }
     public String blankValue(){
         return "";
-    }    
+    }  
+    public boolean saveMember(){
+        return true;
+    }
+    public boolean deleteMember(int iValue){
+        return true;
+    }
+    public boolean findMember(int iValue){
+        return true;
+    }
 }

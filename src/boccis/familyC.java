@@ -16,7 +16,10 @@ public class familyC {
     public boolean saveFamily(){
         return true;
     }
-    public boolean deleteFamily(){
+    public boolean deleteFamily(int iValue){
+        return true;
+    }
+    public boolean findFamily(int iValue){
         return true;
     }
 }
