@@ -124,4 +124,7 @@ public class memberC {
     public boolean findMember(int iValue){
         return true;
     }
+    public void loadMember(){
+        
+    }
 }
