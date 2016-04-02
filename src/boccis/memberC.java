@@ -65,10 +65,10 @@ public class memberC {
     public String getLN(){
         return this.member_lastname;
     }
-    public void setAD(String sValue){
+    public void setSA(String sValue){
         this.member_address = sValue;
     }
-    public String getAD(){
+    public String getSA(){
         return this.member_address;
     }
     public void setCY(String sValue){
@@ -125,6 +125,30 @@ public class memberC {
     public String getBD(){
         return this.member_birthdate;
     }
+    public void setWD(String sValue){
+        this.member_wedding = sValue;
+    }
+    public String getWD(){
+        return this.member_wedding;
+    }
+    public void setSaved(String sValue){
+        this.member_saved = sValue;
+    }
+    public String getSaved(){
+        return this.member_saved;
+    }
+    public void setBaptized(String sValue){
+        this.member_baptized = sValue;
+    }
+    public String getBaptized(){
+        return this.member_baptized;
+    }    
+    public void setShared(String sValue){
+        this.member_shared = sValue;
+    }
+    public String getShared(){
+        return this.member_shared;
+    }    
     public String blankValue(){
         return "";
     }  
