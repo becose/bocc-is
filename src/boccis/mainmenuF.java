@@ -31,9 +31,11 @@ public class mainmenuF extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
+        bMembers = new javax.swing.JMenuItem();
+        bFamily = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
+        jMenu3 = new javax.swing.JMenu();
+        bQuit = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -63,18 +65,40 @@ public class mainmenuF extends javax.swing.JFrame {
             .addGap(0, 313, Short.MAX_VALUE)
         );
 
-        jMenu1.setText("File");
+        jMenu1.setText("Function");
 
-        jMenuItem1.setText("jMenuItem1");
-        jMenu1.add(jMenuItem1);
+        bMembers.setText("Members");
+        bMembers.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bMembersActionPerformed(evt);
+            }
+        });
+        jMenu1.add(bMembers);
 
-        jMenuItem2.setText("jMenuItem2");
-        jMenu1.add(jMenuItem2);
+        bFamily.setText("Family");
+        bFamily.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bFamilyActionPerformed(evt);
+            }
+        });
+        jMenu1.add(bFamily);
 
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("Edit");
         jMenuBar1.add(jMenu2);
+
+        jMenu3.setText("Exit");
+
+        bQuit.setText("Quit System");
+        bQuit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bQuitActionPerformed(evt);
+            }
+        });
+        jMenu3.add(bQuit);
+
+        jMenuBar1.add(jMenu3);
 
         setJMenuBar(jMenuBar1);
 
@@ -101,6 +125,20 @@ public class mainmenuF extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void bMembersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bMembersActionPerformed
+        memberF mf = new memberF();
+        mf.setVisible(true);
+    }//GEN-LAST:event_bMembersActionPerformed
+
+    private void bFamilyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bFamilyActionPerformed
+        familyF ff = new familyF();
+        ff.setVisible(true);
+    }//GEN-LAST:event_bFamilyActionPerformed
+
+    private void bQuitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bQuitActionPerformed
+        this.setVisible(false);
+    }//GEN-LAST:event_bQuitActionPerformed
 
     /**
      * @param args the command line arguments
@@ -138,11 +176,13 @@ public class mainmenuF extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem bFamily;
+    private javax.swing.JMenuItem bMembers;
+    private javax.swing.JMenuItem bQuit;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     // End of variables declaration//GEN-END:variables
