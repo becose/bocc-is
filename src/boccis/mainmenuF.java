@@ -132,7 +132,7 @@ public class mainmenuF extends javax.swing.JFrame {
     }//GEN-LAST:event_bMembersActionPerformed
 
     private void bFamilyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bFamilyActionPerformed
-        familyF ff = new familyF();
+        familyF ff = new familyF(0);
         ff.setVisible(true);
     }//GEN-LAST:event_bFamilyActionPerformed
 

@@ -21,7 +21,7 @@ public class dataC {
        
         try {
             Class.forName("org.sqlite.JDBC");
-            conn = DriverManager.getConnection("jdbc:sqlite:/Users/tommybennett/BOCCIS/bocc.db");
+            conn = DriverManager.getConnection("jdbc:sqlite:/Users/tommybennett/SysDev/BOCCIS/bocc.db");
             mc.outputBox("Database opened successfully...");
         } catch (ClassNotFoundException | SQLException e) {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());

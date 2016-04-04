@@ -174,13 +174,13 @@ public class memberC {
             dataC dc = new dataC();
             try (Connection conn = dc.connectDB()) {
                 stmt = conn.createStatement();
-                String sql = "INSERT INTO member_tbl (member_firstname,"
-                        + "member_middlename,member_lastname,member_address,"
+                String sql = "INSERT INTO member_tbl (member_fname,"
+                        + "member_mname,member_lname,member_address,"
                         + "member_city,member_state,member_zipcode,member_email,"
-                        + "member_homephone,member_workphone,member_cellphone,"
+                        + "member_hphone,member_wphone,member_cphone,"
                         + "member_dob,member_wed,member_saved,member_baptized,"
                         + "member_shared,member_joined,member_status) "
-                        + "VALUES ("+this.member_firstname
+                        + "VALUES ('"+this.member_firstname
                         + "','"+this.member_middlename+"','"+this.member_lastname
                         + "','"+this.member_address+"','"+this.member_city
                         + "','"+this.member_state+"','"+this.member_zipcode
@@ -191,6 +191,7 @@ public class memberC {
                         + "','"+this.member_shared+ "','"+this.member_joindate
                         + "','A'"
                         + ");";
+                mc.outputBox(sql);
                 stmt.executeUpdate(sql);
                 isSaved = true;
                 mc.outputBox("Member "+ this.getMemberInfo() + " successfully saved...");
@@ -211,17 +212,17 @@ public class memberC {
                 stmt = conn.createStatement();
                 String sql = "UPDATE member_tbl SET " +
                         "member_id = " + this.member_id +
-                        ", member_firstname = '" + this.member_firstname +
-                        "', member_middlename = '" + this.member_middlename +
-                        "', member_lastname = '" + this.member_lastname +
+                        ", member_fname = '" + this.member_firstname +
+                        "', member_mname = '" + this.member_middlename +
+                        "', member_lname = '" + this.member_lastname +
                         "', member_address = '" + this.member_address +
                         "', member_city = '" + this.member_city +
                         "', member_state = '" + this.member_state +
                         "', member_zipcode = '" + this.member_zipcode +
                         "', member_email = '" + this.member_email +
-                        "', member_homephone = '" + this.member_homephone +
-                        "', member_workphone = '" + this.member_workphone +
-                        "', member_cellphone = '" + this.member_cellphone +
+                        "', member_hphone = '" + this.member_homephone +
+                        "', member_wphone = '" + this.member_workphone +
+                        "', member_cphone = '" + this.member_cellphone +
                         "', member_joined = '" + this.member_joindate +
                         "', member_wed = '" + this.member_wedding +
                         "', member_dob = '" + this.member_birthdate +
