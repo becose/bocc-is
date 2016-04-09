@@ -10,7 +10,8 @@ package boccis;
  * @author tommybennett
  */
 public class loginF extends javax.swing.JFrame {
-
+    loginC lc = new loginC();
+    methodC mc = new methodC();
     /**
      * Creates new form loginF
      */
@@ -75,6 +76,11 @@ public class loginF extends javax.swing.JFrame {
         });
 
         bCancel.setText("Cancel");
+        bCancel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bCancelActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Username:");
 
@@ -150,14 +156,21 @@ public class loginF extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void bLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bLoginActionPerformed
-        
+        lc.setUN(this.tUN.getText());
+        lc.setPW(this.tPW.getPassword());
+        System.out.println("User " + lc.getUN() + " and " + lc.getPW() +  " found: " + lc.checkLogin());
     }//GEN-LAST:event_bLoginActionPerformed
+
+    private void bCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCancelActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_bCancelActionPerformed
 
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        
+        loginF lf = new loginF();
+        lf.setVisible(true);
     }
     private boolean checkLogin(){
         boolean loginOK = false;
