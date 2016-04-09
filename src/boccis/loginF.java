@@ -159,6 +159,12 @@ public class loginF extends javax.swing.JFrame {
         lc.setUN(this.tUN.getText());
         lc.setPW(this.tPW.getPassword());
         System.out.println("User " + lc.getUN() + " and " + lc.getPW() +  " found: " + lc.checkLogin());
+        
+        if(lc.checkLogin()){
+            mainmenuF mmf = new mainmenuF();
+            mmf.setVisible(true);
+            this.setVisible(false);            
+        }
     }//GEN-LAST:event_bLoginActionPerformed
 
     private void bCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCancelActionPerformed
@@ -168,10 +174,10 @@ public class loginF extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        loginF lf = new loginF();
-        lf.setVisible(true);
-    }
+//    public static void main(String args[]) {
+//        loginF lf = new loginF();
+//        lf.setVisible(true);
+//    }
     private boolean checkLogin(){
         boolean loginOK = false;
         

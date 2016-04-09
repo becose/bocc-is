@@ -15,8 +15,8 @@ public class BOCCIS {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        mainmenuF mmf = new mainmenuF();
-        mmf.setVisible(true);
+        loginF lf = new loginF();
+        lf.setVisible(true);
     }
     
 }
