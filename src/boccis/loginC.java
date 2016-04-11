@@ -20,47 +20,47 @@ public class loginC {
     dataC dc = new dataC();
     methodC mc = new methodC();
     
-    private String sUsername;
-    private char[] sPassword;
+    private String user_name;
+    private char[] user_password;
     //private boolean loginOK = false;
     
     public void setUN(String sValue){
-        this.sUsername = sValue;
+        this.user_name = sValue;
     }
     public void setPW(char[] cValue){
-        this.sPassword = cValue;
+        this.user_password = cValue;
     }
     public String getUN(){
-        return this.sUsername;
+        return this.user_name;
     }
     public String getPW(){
-        String sPass = new String(this.sPassword);
+        String sPass = new String(this.user_password);
         return sPass;
     }
     public boolean checkLogin(){
         boolean loginOK = false;
         boolean isFound = false;
         System.out.println("Checking login.....");
-//        try {
-//            try (Connection conn = dc.connectDB()) {
-//                Statement stmt = conn.createStatement();
-//                String sql = "SELECT * FROM user_tbl WHERE user_name='"+this.sUsername+
-//                                                "' AND user_password='"+this.sPassword+"'";
-//                                                                       
-//                ResultSet rs = stmt.executeQuery(sql);
-//                
-//                rs.next();
-//                //this.member_id = rs.getInt("member_id");
-//                //this.member_firstname = rs.getString("member_firstname");
-//                
-//                loginOK = true;
-//                isFound = true;
-//                mc.outputBox("Login Succesful...");
-//            }
-//            //System.out.println("Database closed...");
-//        } catch (SQLException ex) {
-//            Logger.getLogger(memberC.class.getName()).log(Level.SEVERE, null, ex);
-//        }                     
+        try {
+            try (Connection conn = dc.connectDB()) {
+                Statement stmt = conn.createStatement();
+                String sql = "SELECT * FROM user_tbl WHERE user_name='"+this.user_name+
+                                                "' AND user_password='"+this.getPW()+"'";
+                                                                       
+                ResultSet rs = stmt.executeQuery(sql);
+                
+                if(rs.next()){
+                    loginOK = true;
+                    isFound = true;
+                    mc.outputBox("Login Succesful...");
+                    this.user_name = rs.getString("user_name");
+                    this.user_password = rs.getString("user_password").toCharArray();                    
+                }                               
+            }
+            //System.out.println("Database closed...");
+        } catch (SQLException ex) {
+            Logger.getLogger(memberC.class.getName()).log(Level.SEVERE, null, ex);
+        }                     
         return loginOK;
     }
 }
