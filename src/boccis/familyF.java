@@ -16,6 +16,7 @@ public class familyF extends javax.swing.JFrame {
      */
     public familyF(int familyID) {
         initComponents();
+        this.setLocationRelativeTo(null);        
     }
 
     /**

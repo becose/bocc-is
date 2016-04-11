@@ -16,6 +16,7 @@ public class mainmenuF extends javax.swing.JFrame {
      */
     public mainmenuF() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**

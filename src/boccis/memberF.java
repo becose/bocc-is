@@ -18,6 +18,7 @@ public class memberF extends javax.swing.JFrame {
      */
     public memberF() {
         initComponents();
+        this.setLocationRelativeTo(null);        
     }
 
     /**
