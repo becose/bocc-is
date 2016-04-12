@@ -33,7 +33,10 @@ public class loginC {
     public String getUN(){
         return this.user_name;
     }
-    public String getPW(){
+    public char[] getPW(){
+        return this.user_password;
+    }
+    public String getSPW(){
         String sPass = new String(this.user_password);
         return sPass;
     }
@@ -45,7 +48,7 @@ public class loginC {
             try (Connection conn = dc.connectDB()) {
                 Statement stmt = conn.createStatement();
                 String sql = "SELECT * FROM user_tbl WHERE user_name='"+this.user_name+
-                                                "' AND user_password='"+this.getPW()+"'";
+                                                "' AND user_password='"+this.getSPW()+"'";
                                                                        
                 ResultSet rs = stmt.executeQuery(sql);
                 
