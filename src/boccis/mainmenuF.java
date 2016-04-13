@@ -5,6 +5,10 @@
  */
 package boccis;
 
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author tommybennett
@@ -133,8 +137,12 @@ public class mainmenuF extends javax.swing.JFrame {
     }//GEN-LAST:event_bMembersActionPerformed
 
     private void bFamilyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bFamilyActionPerformed
-        familyF ff = new familyF(0);
-        ff.setVisible(true);
+        try {
+            familyF ff = new familyF(0);
+            ff.setVisible(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(mainmenuF.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_bFamilyActionPerformed
 
     private void bQuitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bQuitActionPerformed

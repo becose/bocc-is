@@ -5,6 +5,10 @@
  */
 package boccis;
 
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author tommybennett
@@ -551,8 +555,12 @@ public class memberF extends javax.swing.JFrame {
     }//GEN-LAST:event_bDeleteActionPerformed
 
     private void bFamilyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bFamilyActionPerformed
-        familyF ff = new familyF(mc.getID());
-        ff.setVisible(true);
+        try {
+            familyF ff = new familyF(mc.getID());
+            ff.setVisible(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(memberF.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_bFamilyActionPerformed
 
 //    /**

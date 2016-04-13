@@ -5,6 +5,9 @@
  */
 package boccis;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 /**
  *
  * @author tommybennett
@@ -12,13 +15,42 @@ package boccis;
 public class familyF extends javax.swing.JFrame {
     familyC fc = new familyC();
     methodC mc = new methodC();
+    memberC mmc = new memberC();
     /**
      * Creates new form familyF
+     * @param familyID
+     * @throws java.sql.SQLException
      */
-    public familyF(int familyID) {
+    public familyF(int familyID) throws SQLException {
         initComponents();
-        this.setLocationRelativeTo(null);        
+        this.setLocationRelativeTo(null);    
+        this.loadPrimaryMember();
+        this.loadToMember();
     }
+    private void loadPrimaryMember() throws SQLException{
+        ResultSet rs = mmc.getMembers();
+        this.cbPrimaryMember.removeAllItems();
+        this.cbPrimaryMember.addItem("Select Primary Member ->");
+        
+        while(rs.next()){
+            //if(mc.int2String(rs.getInt("member_id")).equals("1")){
+                this.cbPrimaryMember.addItem(mc.padString(mc.int2String(rs.getInt("member_id")),6, "0") + 
+                        " - " + rs.getString("member_lname") +", "+ rs.getString("member_fname"));
+            //}
+        }           
+    }
+   private void loadToMember() throws SQLException{
+        ResultSet rs = mmc.getMembers();
+        this.cbToMember.removeAllItems();
+        this.cbToMember.addItem("Select To Member ->");
+        
+        while(rs.next()){
+            //if(mc.int2String(rs.getInt("member_id")).equals("1")){
+                this.cbToMember.addItem(mc.padString(mc.int2String(rs.getInt("member_id")),6, "0") + 
+                        " - " + rs.getString("member_lname") +", "+ rs.getString("member_fname"));
+            //}
+        }           
+    }    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -164,7 +196,7 @@ public class familyF extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void bCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCloseActionPerformed
-        System.exit(0);
+        this.setVisible(false);
     }//GEN-LAST:event_bCloseActionPerformed
 
     private void bLinkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bLinkActionPerformed
@@ -172,12 +204,12 @@ public class familyF extends javax.swing.JFrame {
         String sMI = this.cbToMember.getSelectedItem().toString().substring(0, 3);
         String sLI = this.cbRelation.getSelectedItem().toString().substring(0, 3);
         
-        if(!sFI.equals("Sel") && !sMI.equals("Sel")){
+        if((!sFI.equals("Sel") && !sMI.equals("Sel")) && !sFI.equals(sMI)){
             fc.setFI(mc.String2int(sFI));
             fc.setMI(mc.String2int(sMI));
             fc.setLI(mc.String2int(sLI));
         } else {
-            mc.messageBox("ERROR -> You did not Select the Primary or Link To Member...");
+            mc.messageBox("ERROR -> You did not Select the Primary or Link To Member nor can it be the same...");
         }
     }//GEN-LAST:event_bLinkActionPerformed
 

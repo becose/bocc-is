@@ -303,6 +303,18 @@ public class memberC {
         }             
         return isFound;
     }
+    public ResultSet getMembers() throws SQLException{
+        Connection conn;
+        Statement stmt;
+        ResultSet rs;
+        dataC mdc = new dataC();
+        conn = mdc.connectDB();
+        stmt = conn.createStatement();     
+        String sql = "SELECT * FROM member_tbl";            
+        rs = stmt.executeQuery(sql);
+      
+        return rs;      
+    }
     public void loadMember(){
         
     }
