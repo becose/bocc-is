@@ -59,10 +59,9 @@ public class loginC {
                     this.user_name = rs.getString("user_name");
                     this.user_password = rs.getString("user_password").toCharArray();
                     conn.close();
+                    System.out.println("Database closed...");
                 }                               
-            }
-            
-            //System.out.println("Database closed...");
+            }            
         } catch (SQLException ex) {
             Logger.getLogger(memberC.class.getName()).log(Level.SEVERE, null, ex);
         }                     
