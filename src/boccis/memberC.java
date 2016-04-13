@@ -272,25 +272,7 @@ public class memberC {
                 String sql = "SELECT * FROM member_tbl WHERE member_id="+iValue;
                 ResultSet rs = stmt.executeQuery(sql);
                 
-                this.member_id = rs.getInt("member_id");
-                this.member_firstname = rs.getString("member_firstname");
-                this.member_middlename = rs.getString("member_middlename");
-                this.member_lastname = rs.getString("member_lastname");
-                this.member_address = rs.getString("member_address");
-                this.member_city = rs.getString("member_city");
-                this.member_state = rs.getString("member_state");
-                this.member_zipcode = rs.getString("member_zipcode");
-                this.member_email = rs.getString("member_email");
-                this.member_homephone = rs.getString("member_homephone");
-                this.member_workphone = rs.getString("member_workphone");
-                this.member_cellphone = rs.getString("member_cellphone");
-                this.member_joindate = rs.getString("member_joined");
-                this.member_birthdate = rs.getString("member_dob");
-                this.member_wedding = rs.getString("member_wed");
-                this.member_saved = rs.getString("member_saved");
-                this.member_baptized = rs.getString("member_baptized");
-                this.member_shared = rs.getString("member_shared");                
-                this.member_status = rs.getString("member_status");
+                this.loadMember(rs);
                 
                 mc.outputBox("Member ID: " + iValue + " - " +
                               this.getMemberInfo());
@@ -315,7 +297,25 @@ public class memberC {
       
         return rs;      
     }
-    public void loadMember(){
-        
+    public void loadMember(ResultSet rsValue) throws SQLException{
+        this.member_id = rsValue.getInt("member_id");
+        this.member_firstname = rsValue.getString("member_firstname");
+        this.member_middlename = rsValue.getString("member_middlename");
+        this.member_lastname = rsValue.getString("member_lastname");
+        this.member_address = rsValue.getString("member_address");
+        this.member_city = rsValue.getString("member_city");
+        this.member_state = rsValue.getString("member_state");
+        this.member_zipcode = rsValue.getString("member_zipcode");
+        this.member_email = rsValue.getString("member_email");
+        this.member_homephone = rsValue.getString("member_homephone");
+        this.member_workphone = rsValue.getString("member_workphone");
+        this.member_cellphone = rsValue.getString("member_cellphone");
+        this.member_joindate = rsValue.getString("member_joined");
+        this.member_birthdate = rsValue.getString("member_dob");
+        this.member_wedding = rsValue.getString("member_wed");
+        this.member_saved = rsValue.getString("member_saved");
+        this.member_baptized = rsValue.getString("member_baptized");
+        this.member_shared = rsValue.getString("member_shared");                
+        this.member_status = rsValue.getString("member_status");        
     }
 }
