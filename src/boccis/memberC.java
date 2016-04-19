@@ -189,8 +189,8 @@ public class memberC {
                         + "','"+this.member_birthdate+ "','"+this.member_wedding
                         + "','"+this.member_saved+"','"+this.member_baptized
                         + "','"+this.member_shared+ "','"+this.member_joindate
-                        + "','A'"
-                        + ");";
+                        + "','A','"+this.getFullName()
+                        + "');";
                 mc.outputBox(sql);
                 stmt.executeUpdate(sql);
                 isSaved = true;
@@ -299,17 +299,17 @@ public class memberC {
     }
     public void loadMember(ResultSet rsValue) throws SQLException{
         this.member_id = rsValue.getInt("member_id");
-        this.member_firstname = rsValue.getString("member_firstname");
-        this.member_middlename = rsValue.getString("member_middlename");
-        this.member_lastname = rsValue.getString("member_lastname");
+        this.member_firstname = rsValue.getString("member_fname");
+        this.member_middlename = rsValue.getString("member_mname");
+        this.member_lastname = rsValue.getString("member_lname");
         this.member_address = rsValue.getString("member_address");
         this.member_city = rsValue.getString("member_city");
         this.member_state = rsValue.getString("member_state");
         this.member_zipcode = rsValue.getString("member_zipcode");
         this.member_email = rsValue.getString("member_email");
-        this.member_homephone = rsValue.getString("member_homephone");
-        this.member_workphone = rsValue.getString("member_workphone");
-        this.member_cellphone = rsValue.getString("member_cellphone");
+        this.member_homephone = rsValue.getString("member_hphone");
+        this.member_workphone = rsValue.getString("member_wphone");
+        this.member_cellphone = rsValue.getString("member_cphone");
         this.member_joindate = rsValue.getString("member_joined");
         this.member_birthdate = rsValue.getString("member_dob");
         this.member_wedding = rsValue.getString("member_wed");

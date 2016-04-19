@@ -209,8 +209,10 @@ public class familyF extends javax.swing.JFrame {
             fc.setMI(mc.String2int(sMI));
             fc.setRI(mc.String2int(sRI));
             fc.setDT(mc.getCurrentDate());
-            mc.outputBox("Member -> "+fc.getMI()+" Connected -> "+fc.getCI()
-                        +" Relation -> "+fc.getRI()+" Date: "+fc.getDT());
+            mc.outputBox("Member -> "+fc.getMemberName(fc.getMI())
+                        +" Connected -> "+fc.getMemberName(fc.getCI())
+                        +" Relation -> "+fc.getRI()
+                        +" Date: "+fc.getDT());
         } else {
             mc.messageBox("ERROR -> You did not Select the Primary or Link To Member nor can it be the same...");
         }

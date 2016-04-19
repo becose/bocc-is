@@ -16,6 +16,7 @@ import java.util.logging.Logger;
  * @author tommybennett
  */
 public class familyC {
+    memberC mmc = new memberC();
     methodC mc = new methodC();
     dataC dc = new dataC();
     
@@ -84,5 +85,9 @@ public class familyC {
     }
     public boolean findFamily(int iValue){
         return true;
+    }
+    public String getMemberName(int iValue){
+        mmc.findMember(iValue);
+        return mmc.getFullName();
     }
 }
