@@ -93,7 +93,7 @@ public class methodC {
     public void outputBox(String sMessage) {
         System.out.println(sMessage);
     }    
-    public String getDateFormatted() {
+    public String getDateTimeFormatted() {
         // Create an instance of SimpleDateFormat used for formatting
         // the string representation of date (month/day/year)
         DateFormat df = new SimpleDateFormat("MM/dd/yyyy hh:MM:dd a");

@@ -200,14 +200,17 @@ public class familyF extends javax.swing.JFrame {
     }//GEN-LAST:event_bCloseActionPerformed
 
     private void bLinkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bLinkActionPerformed
-        String sFI = this.cbPrimaryMember.getSelectedItem().toString().substring(0, 3);
-        String sMI = this.cbToMember.getSelectedItem().toString().substring(0, 3);
-        String sLI = this.cbRelation.getSelectedItem().toString().substring(0, 3);
+        String sMI = this.cbPrimaryMember.getSelectedItem().toString().substring(0, 6);
+        String sCI = this.cbToMember.getSelectedItem().toString().substring(0, 6);
+        String sRI = this.cbRelation.getSelectedItem().toString().substring(0, 3);
         
-        if((!sFI.equals("Sel") && !sMI.equals("Sel")) && !sFI.equals(sMI)){
-            fc.setFI(mc.String2int(sFI));
+        if((!sCI.equals("Select") && !sMI.equals("Select")) && !sCI.equals(sMI)){
+            fc.setCI(mc.String2int(sCI));
             fc.setMI(mc.String2int(sMI));
-            fc.setLI(mc.String2int(sLI));
+            fc.setRI(mc.String2int(sRI));
+            fc.setDT(mc.getCurrentDate());
+            mc.outputBox("Member -> "+fc.getMI()+" Connected -> "+fc.getCI()
+                        +" Relation -> "+fc.getRI()+" Date: "+fc.getDT());
         } else {
             mc.messageBox("ERROR -> You did not Select the Primary or Link To Member nor can it be the same...");
         }
