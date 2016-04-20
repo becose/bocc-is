@@ -215,7 +215,10 @@ public class familyF extends javax.swing.JFrame {
                             +" Connected -> "+fc.getMemberName(fc.getCI())
                             +" Relation -> "+fc.getRI()
                             +" Date: "+fc.getDT());
-                if(fc.getRI()==1 || fc.getRI()==2){ // Spouse and Child to reverse link
+                if(fc.getRI()==1 || 
+                   fc.getRI()==2 || 
+                   fc.getRI()==4 ||
+                   fc.getRI()==5){ // 1-Spouse, 2-Child, 4-Sibling and 5-Relative to reverse link
                     int tempMI = fc.getMI();
                     int tempCI = fc.getCI();
                     
