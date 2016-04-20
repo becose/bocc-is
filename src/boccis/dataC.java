@@ -14,7 +14,7 @@ import java.sql.SQLException;
  * @author tommybennett
  */
 public class dataC {
-    methodC mc = new methodC();
+    methodC mmc = new methodC();
     
     public Connection connectDB(){
         Connection conn = null;
@@ -22,7 +22,7 @@ public class dataC {
         try {
             Class.forName("org.sqlite.JDBC");
             conn = DriverManager.getConnection("jdbc:sqlite:/Users/tommybennett/SysDev/BOCCIS/bocc.db");
-            mc.outputBox("Database opened successfully...");
+            mmc.outputBox("Database opened successfully...");
         } catch (ClassNotFoundException | SQLException e) {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
             System.exit(0);

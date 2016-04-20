@@ -11,7 +11,7 @@ package boccis;
  */
 public class loginF extends javax.swing.JFrame {
     loginC lc = new loginC();
-    methodC mc = new methodC();
+    methodC mmc = new methodC();
     /**
      * Creates new form loginF
      */

@@ -18,7 +18,7 @@ import java.util.logging.Logger;
  */
 public class loginC {
     dataC dc = new dataC();
-    methodC mc = new methodC();
+    methodC mmc = new methodC();
     
     private String user_name;
     private char[] user_password;
@@ -55,7 +55,7 @@ public class loginC {
                 if(rs.next()){
                     loginOK = true;
                     isFound = true;
-                    mc.outputBox("Login Succesful...");
+                    mmc.outputBox("Login Succesful...");
                     this.user_name = rs.getString("user_name");
                     this.user_password = rs.getString("user_password").toCharArray();
                     conn.close();

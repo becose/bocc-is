@@ -14,8 +14,8 @@ import java.sql.SQLException;
  */
 public class familyF extends javax.swing.JFrame {
     familyC fc = new familyC();
-    methodC mc = new methodC();
-    memberC mmc = new memberC();
+    methodC mmc = new methodC();
+    memberC mc = new memberC();
     /**
      * Creates new form familyF
      * @param familyID
@@ -28,25 +28,25 @@ public class familyF extends javax.swing.JFrame {
         this.loadToMember();
     }
     private void loadPrimaryMember() throws SQLException{
-        ResultSet rs = mmc.getMembers();
+        ResultSet rs = mc.getMembers();
         this.cbPrimaryMember.removeAllItems();
         this.cbPrimaryMember.addItem("Select Primary Member ->");
         
         while(rs.next()){
-            //if(mc.int2String(rs.getInt("member_id")).equals("1")){
-                this.cbPrimaryMember.addItem(mc.padString(mc.int2String(rs.getInt("member_id")),6, "0") + 
+            //if(mmc.int2String(rs.getInt("member_id")).equals("1")){
+                this.cbPrimaryMember.addItem(mmc.padString(mmc.int2String(rs.getInt("member_id")),6, "0") + 
                         " - " + rs.getString("member_lname") +", "+ rs.getString("member_fname"));
             //}
         }           
     }
    private void loadToMember() throws SQLException{
-        ResultSet rs = mmc.getMembers();
+        ResultSet rs = mc.getMembers();
         this.cbToMember.removeAllItems();
         this.cbToMember.addItem("Select To Member ->");
         
         while(rs.next()){
-            //if(mc.int2String(rs.getInt("member_id")).equals("1")){
-                this.cbToMember.addItem(mc.padString(mc.int2String(rs.getInt("member_id")),6, "0") + 
+            //if(mmc.int2String(rs.getInt("member_id")).equals("1")){
+                this.cbToMember.addItem(mmc.padString(mmc.int2String(rs.getInt("member_id")),6, "0") + 
                         " - " + rs.getString("member_lname") +", "+ rs.getString("member_fname"));
             //}
         }           
@@ -205,13 +205,13 @@ public class familyF extends javax.swing.JFrame {
         String sRI = this.cbRelation.getSelectedItem().toString().substring(0, 3);
         
         if((!sCI.equals("Select") && !sMI.equals("Select")) && !sCI.equals(sMI)){
-            fc.setCI(mc.String2int(sCI));
-            fc.setMI(mc.String2int(sMI));
-            fc.setRI(mc.String2int(sRI));
-            fc.setDT(mc.getCurrentDate());
+            fc.setCI(mmc.String2int(sCI));
+            fc.setMI(mmc.String2int(sMI));
+            fc.setRI(mmc.String2int(sRI));
+            fc.setDT(mmc.getCurrentDate());
             
             if(fc.linkFamily()){
-                mc.outputBox("Member -> "+fc.getMemberName(fc.getMI())
+                mmc.outputBox("Member -> "+fc.getMemberName(fc.getMI())
                             +" Connected -> "+fc.getMemberName(fc.getCI())
                             +" Relation -> "+fc.getRI()
                             +" Date: "+fc.getDT());
@@ -223,7 +223,7 @@ public class familyF extends javax.swing.JFrame {
                     fc.setMI(tempCI);
                     
                     if(fc.linkFamily()){
-                        mc.outputBox("Member -> "+fc.getMemberName(fc.getMI())
+                        mmc.outputBox("Member -> "+fc.getMemberName(fc.getMI())
                                     +" Connected -> "+fc.getMemberName(fc.getCI())
                                     +" Relation -> "+fc.getRI()
                                     +" Date: "+fc.getDT());                        
@@ -231,7 +231,7 @@ public class familyF extends javax.swing.JFrame {
                 }
             }
         } else {
-            mc.messageBox("ERROR -> You did not Select the Primary or Link To Member nor can it be the same...");
+            mmc.messageBox("ERROR -> You did not Select the Primary or Link To Member nor can it be the same...");
         }
     }//GEN-LAST:event_bLinkActionPerformed
 

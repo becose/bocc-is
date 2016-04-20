@@ -17,7 +17,7 @@ import java.util.logging.Logger;
  * @author tommybennett
  */
 public class memberC {
-    methodC mc = new methodC();
+    methodC mmc = new methodC();
     dataC dc = new dataC();
     
     private int member_id;
@@ -168,7 +168,7 @@ public class memberC {
     }
     public boolean saveMember(){
         boolean isSaved = false;
-        mc.outputBox("Saving Member " + this.getMemberInfo() + "...");
+        mmc.outputBox("Saving Member " + this.getMemberInfo() + "...");
         try {
             Statement stmt;
             dataC dc = new dataC();
@@ -191,12 +191,12 @@ public class memberC {
                         + "','"+this.member_shared+ "','"+this.member_joindate
                         + "','A','"+this.getFullName()
                         + "');";
-                mc.outputBox(sql);
+                mmc.outputBox(sql);
                 stmt.executeUpdate(sql);
                 isSaved = true;
-                mc.outputBox("Member "+ this.getMemberInfo() + " successfully saved...");
+                mmc.outputBox("Member "+ this.getMemberInfo() + " successfully saved...");
             }
-            //mc.outputBox("Database closed...");
+            //mmc.outputBox("Database closed...");
         } catch (SQLException ex) {
             Logger.getLogger(memberC.class.getName()).log(Level.SEVERE, null, ex);
         }              
@@ -204,7 +204,7 @@ public class memberC {
     }
     public boolean updateMember(int iValue){
         boolean isUpdated = false;
-        mc.outputBox("Updating Member : " + this.getMemberInfo());
+        mmc.outputBox("Updating Member : " + this.getMemberInfo());
         try {
             Statement stmt;
             dataC dc = new dataC();
@@ -231,12 +231,12 @@ public class memberC {
                         "', member_shared = '" + this.member_shared +                        
                         "', member_status = '" + this.member_status +
                         "' WHERE member_id = " + iValue;
-                mc.outputBox(sql);
+                mmc.outputBox(sql);
                 stmt.executeUpdate(sql);
                 
-                mc.outputBox("Member " + this.getMemberInfo() + " successfully updated...");
+                mmc.outputBox("Member " + this.getMemberInfo() + " successfully updated...");
             }
-            //mc.outputBox("Database closed...");
+            //mmc.outputBox("Database closed...");
         } catch (SQLException ex) {
             Logger.getLogger(memberC.class.getName()).log(Level.SEVERE, null, ex);
         }               
@@ -244,7 +244,7 @@ public class memberC {
     }
     public boolean deleteMember(int iValue, String sValue){
         boolean isDeleted = false;
-        mc.outputBox("De-Activating/Activating Member : " + this.getMemberInfo());
+        mmc.outputBox("De-Activating/Activating Member : " + this.getMemberInfo());
         try {
             Statement stmt;
             dataC dc = new dataC();
@@ -253,12 +253,12 @@ public class memberC {
                 String sql = "UPDATE member_tbl SET " +
                         "member_status = '"+ sValue +"'" +
                         " WHERE member_id = " + iValue;
-                mc.outputBox(sql);
+                mmc.outputBox(sql);
                 stmt.executeUpdate(sql);
                 isDeleted = true;
-                mc.outputBox("Member " + this.getMemberInfo() + " successfully de-activated/activated...");
+                mmc.outputBox("Member " + this.getMemberInfo() + " successfully de-activated/activated...");
             }
-            //mc.outputBox("Database closed...");
+            //mmc.outputBox("Database closed...");
         } catch (SQLException ex) {
             Logger.getLogger(memberC.class.getName()).log(Level.SEVERE, null, ex);
         }              
@@ -274,10 +274,10 @@ public class memberC {
                 
                 this.loadMember(rs);
                 
-                mc.outputBox("Member ID: " + iValue + " - " +
+                mmc.outputBox("Member ID: " + iValue + " - " +
                               this.getMemberInfo());
                 isFound = true;
-                mc.outputBox("Find Member " + this.getMemberInfo() + " query successfully ran...");
+                mmc.outputBox("Find Member " + this.getMemberInfo() + " query successfully ran...");
             }
             //System.out.println("Database closed...");
         } catch (SQLException ex) {

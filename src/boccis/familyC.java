@@ -16,8 +16,8 @@ import java.util.logging.Logger;
  * @author tommybennett
  */
 public class familyC {
-    memberC mmc = new memberC();
-    methodC mc = new methodC();
+    memberC mc = new memberC();
+    methodC mmc = new methodC();
     dataC dc = new dataC();
     
     private int family_id;
@@ -58,7 +58,7 @@ public class familyC {
     }
     public boolean linkFamily(){
         boolean isSaved = false;
-        mc.outputBox("Linking Members ...");
+        mmc.outputBox("Linking Members ...");
         try {
             Statement stmt;
             dataC dc = new dataC();
@@ -69,12 +69,12 @@ public class familyC {
                         + "VALUES ("+this.member_id+","+this.connected_id
                         + ","+this.relation_id+",'"+this.family_date
                         + "');";
-                mc.outputBox(sql);
+                mmc.outputBox(sql);
                 stmt.executeUpdate(sql);
                 isSaved = true;
-                //mc.outputBox("Member "+ this.getMemberInfo() + " successfully saved...");
+                //mmc.outputBox("Member "+ this.getMemberInfo() + " successfully saved...");
             }
-            //mc.outputBox("Database closed...");
+            //mmc.outputBox("Database closed...");
         } catch (SQLException ex) {
             Logger.getLogger(familyC.class.getName()).log(Level.SEVERE, null, ex);
         }              
@@ -87,7 +87,7 @@ public class familyC {
         return true;
     }
     public String getMemberName(int iValue){
-        mmc.findMember(iValue);
-        return mmc.getFullName();
+        mc.findMember(iValue);
+        return mc.getFullName();
     }
 }
