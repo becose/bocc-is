@@ -5,6 +5,7 @@
  */
 package boccis;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -16,16 +17,23 @@ import java.util.logging.Logger;
 public class memberF extends javax.swing.JFrame {
     methodC mmc = new methodC();
     memberC mc = new memberC();
-    
+    boolean isLoaded = true;
     /**
      * Creates new form memberF
      */
-    public memberF() {
+    public memberF() throws SQLException {
         initComponents();
+        this.setupForm();
+
+    }
+    public void setupForm() throws SQLException{
         this.setLocationRelativeTo(null); 
         this.lbMI.setText("0");
+        if(this.isLoaded){
+            this.loadMemberList();
+            this.isLoaded = false;
+        }
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -82,11 +90,14 @@ public class memberF extends javax.swing.JFrame {
         jPanel10 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblFamily = new javax.swing.JTable();
+        jLabel18 = new javax.swing.JLabel();
+        cbMemberList = new javax.swing.JComboBox();
         jPanel4 = new javax.swing.JPanel();
         bClose = new javax.swing.JButton();
         bSave = new javax.swing.JButton();
         bDelete = new javax.swing.JButton();
         bFamily = new javax.swing.JButton();
+        bClear = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -367,7 +378,7 @@ public class memberF extends javax.swing.JFrame {
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE)
+                .addComponent(jScrollPane1)
                 .addContainerGap())
         );
 
@@ -414,9 +425,18 @@ public class memberF extends javax.swing.JFrame {
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel10Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE)
                 .addContainerGap())
         );
+
+        jLabel18.setBackground(new java.awt.Color(153, 204, 255));
+        jLabel18.setText("Member List:");
+
+        cbMemberList.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbMemberListActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -437,7 +457,11 @@ public class memberF extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cbMemberList, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -445,10 +469,15 @@ public class memberF extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(12, 12, 12)
-                        .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel18)
+                            .addComponent(cbMemberList, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(member_id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -492,14 +521,23 @@ public class memberF extends javax.swing.JFrame {
             }
         });
 
+        bClear.setText("Clear");
+        bClear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bClearActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                 .addComponent(bSave)
-                .addGap(26, 26, 26)
-                .addComponent(bDelete)
+                .addGap(18, 18, 18)
+                .addComponent(bDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(bClear, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(bFamily)
                 .addGap(42, 42, 42)
@@ -514,7 +552,8 @@ public class memberF extends javax.swing.JFrame {
                     .addComponent(bClose)
                     .addComponent(bSave)
                     .addComponent(bDelete)
-                    .addComponent(bFamily))
+                    .addComponent(bFamily)
+                    .addComponent(bClear))
                 .addContainerGap(9, Short.MAX_VALUE))
         );
 
@@ -566,6 +605,16 @@ public class memberF extends javax.swing.JFrame {
             Logger.getLogger(memberF.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_bFamilyActionPerformed
+
+    private void bClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bClearActionPerformed
+        this.clearMemberForm();
+    }//GEN-LAST:event_bClearActionPerformed
+
+    private void cbMemberListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbMemberListActionPerformed
+        if(!this.isLoaded && !this.cbMemberList.getSelectedItem().toString().substring(0, 6).equals("Select")){
+            mmc.outputBox("You selected "+this.cbMemberList.getSelectedItem().toString());
+        }
+    }//GEN-LAST:event_cbMemberListActionPerformed
 
 //    /**
 //     * @param args the command line arguments
@@ -631,11 +680,45 @@ public class memberF extends javax.swing.JFrame {
             this.writeMemberData();
         }
     }
+    public void loadMemberList() throws SQLException{
+        ResultSet rs = mc.getMembers();
+        this.cbMemberList.removeAllItems();
+        this.cbMemberList.addItem("Select To Member ->");
+        
+        while(rs.next()){
+            //if(mmc.int2String(rs.getInt("member_id")).equals("1")){
+                this.cbMemberList.addItem(mmc.padString(mmc.int2String(rs.getInt("member_id")),6, "0") + 
+                        " - " + rs.getString("member_lname") +", "+ rs.getString("member_fname"));
+            //}
+        }           
+    }
     public void loadMemberData(){
+        this.clearMemberForm();
         
     }
     public void clearMemberForm(){
+        this.lbMI.setText("0");
+        this.tFN.setText("");
+        this.tMN.setText("");
+        this.tLN.setText("");
         
+        this.tSA.setText("");
+        this.tCY.setText("");
+        this.tST.setText("");
+        this.tZC.setText("");
+        
+        this.tHP.setText("");
+        this.tWP.setText("");
+        this.tCP.setText("");
+        this.tEM.setText("");
+        
+        this.tBD.setText("");
+        this.tJD.setText("");
+        this.tWD.setText("");
+        
+        this.chSaved.setSelected(false);
+        this.chBaptized.setSelected(false);
+        this.chShared.setSelected(false);        
     }
     public void writeMemberData(){
         String writingData;
@@ -649,10 +732,12 @@ public class memberF extends javax.swing.JFrame {
         this.tNotes.setText(writingData);
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton bClear;
     private javax.swing.JButton bClose;
     private javax.swing.JButton bDelete;
     private javax.swing.JButton bFamily;
     private javax.swing.JButton bSave;
+    private javax.swing.JComboBox cbMemberList;
     private javax.swing.JCheckBox chBaptized;
     private javax.swing.JCheckBox chSaved;
     private javax.swing.JCheckBox chShared;
@@ -665,6 +750,7 @@ public class memberF extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
