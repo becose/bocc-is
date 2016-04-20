@@ -197,11 +197,12 @@
     <Component class="javax.swing.JComboBox" name="cbRelation">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="4">
+          <StringArray count="5">
             <StringItem index="0" value="001 - Spouse"/>
             <StringItem index="1" value="002 - Child"/>
             <StringItem index="2" value="003 - Parent"/>
-            <StringItem index="3" value="004 - Relative"/>
+            <StringItem index="3" value="004 - Sibling"/>
+            <StringItem index="4" value="005 - Relative"/>
           </StringArray>
         </Property>
       </Properties>

@@ -140,7 +140,7 @@ public class familyF extends javax.swing.JFrame {
 
         cbToMember.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Select To Member ->" }));
 
-        cbRelation.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "001 - Spouse", "002 - Child", "003 - Parent", "004 - Relative" }));
+        cbRelation.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "001 - Spouse", "002 - Child", "003 - Parent", "004 - Sibling", "005 - Relative" }));
 
         jLabel1.setText("Primary Member:");
 
