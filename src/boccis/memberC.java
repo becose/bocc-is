@@ -17,6 +17,7 @@ import java.util.logging.Logger;
  * @author tommybennett
  */
 public class memberC {
+    //familyC fc = new familyC();
     methodC mmc = new methodC();
     dataC dc = new dataC();
     
@@ -179,7 +180,7 @@ public class memberC {
                         + "member_city,member_state,member_zipcode,member_email,"
                         + "member_hphone,member_wphone,member_cphone,"
                         + "member_dob,member_wed,member_saved,member_baptized,"
-                        + "member_shared,member_joined,member_status) "
+                        + "member_shared,member_joined,member_status,member_fullname) "
                         + "VALUES ('"+this.member_firstname
                         + "','"+this.member_middlename+"','"+this.member_lastname
                         + "','"+this.member_address+"','"+this.member_city
@@ -230,6 +231,7 @@ public class memberC {
                         "', member_baptized = '" + this.member_baptized +
                         "', member_shared = '" + this.member_shared +                        
                         "', member_status = '" + this.member_status +
+                        "', member_fullname = '" + this.getFullName() +
                         "' WHERE member_id = " + iValue;
                 mmc.outputBox(sql);
                 stmt.executeUpdate(sql);
@@ -316,6 +318,32 @@ public class memberC {
         this.member_saved = rsValue.getString("member_saved");
         this.member_baptized = rsValue.getString("member_baptized");
         this.member_shared = rsValue.getString("member_shared");                
-        this.member_status = rsValue.getString("member_status");        
+        this.member_status = rsValue.getString("member_status"); 
     }
+    public boolean saveMemberAddress(int iToMI, int iFromMI){
+        boolean isUpdated = false;
+        mmc.outputBox("Updating Member Address...");
+        try {
+            Statement stmt;
+            dataC dc = new dataC();
+            try (Connection conn = dc.connectDB()) {
+                stmt = conn.createStatement();
+                String sql = "UPDATE member_tbl SET " +
+                        "member_address = '" + this.member_address +
+                        "', member_city = '" + this.member_city +
+                        "', member_state = '" + this.member_state +
+                        "', member_zipcode = '" + this.member_zipcode +
+                        "', member_hphone = '" + this.member_homephone +
+                        "' WHERE member_id = " + iToMI;
+                mmc.outputBox(sql);
+                stmt.executeUpdate(sql);
+                
+                mmc.outputBox("Member successfully updated...");
+            }
+            //mmc.outputBox("Database closed...");
+        } catch (SQLException ex) {
+            Logger.getLogger(memberC.class.getName()).log(Level.SEVERE, null, ex);
+        }               
+        return isUpdated;
+    }    
 }

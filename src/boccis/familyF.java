@@ -216,9 +216,8 @@ public class familyF extends javax.swing.JFrame {
                             +" Relation -> "+fc.getRI()
                             +" Date: "+fc.getDT());
                 if(fc.getRI()==1 || 
-                   fc.getRI()==2 || 
                    fc.getRI()==4 ||
-                   fc.getRI()==5){ // 1-Spouse, 2-Child, 4-Sibling and 5-Relative to reverse link
+                   fc.getRI()==5){ // 1-Spouse, 4-Sibling and 5-Relative to reverse link
                     int tempMI = fc.getMI();
                     int tempCI = fc.getCI();
                     
@@ -231,6 +230,28 @@ public class familyF extends javax.swing.JFrame {
                                     +" Relation -> "+fc.getRI()
                                     +" Date: "+fc.getDT());                        
                     }                    
+                }
+                if(fc.getRI()==3){ // 3 - Parent to 2 - Child
+                    int tempMI = fc.getMI();
+                    int tempCI = fc.getCI();
+                    
+                    fc.setCI(tempMI);
+                    fc.setMI(tempCI);
+                    fc.setRI(2);
+                    
+                    if(fc.linkFamily()){
+                        mmc.outputBox("Member -> "+fc.getMemberName(fc.getMI())
+                                    +" Connected -> "+fc.getMemberName(fc.getCI())
+                                    +" Relation -> "+fc.getRI()
+                                    +" Date: "+fc.getDT());                        
+                    }         
+                   
+                    if(mc.findMember(tempMI)){
+                        mmc.outputBox("Found member to get address from...");
+                    }
+                    if(mc.saveMemberAddress(tempCI, tempMI)){
+                        mmc.outputBox("Secondary member address updated...");
+                    }                   
                 }
             }
         } else {

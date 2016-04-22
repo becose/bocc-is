@@ -17,9 +17,12 @@ import java.util.logging.Logger;
 public class memberF extends javax.swing.JFrame {
     methodC mmc = new methodC();
     memberC mc = new memberC();
+    addressC ac = new addressC();
+    
     boolean isLoaded = true;
     /**
      * Creates new form memberF
+     * @throws java.sql.SQLException
      */
     public memberF() throws SQLException {
         initComponents();
@@ -612,7 +615,10 @@ public class memberF extends javax.swing.JFrame {
 
     private void cbMemberListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbMemberListActionPerformed
         if(!this.isLoaded && !this.cbMemberList.getSelectedItem().toString().substring(0, 6).equals("Select")){
+            int iMI = mmc.String2int(this.cbMemberList.getSelectedItem().toString().substring(0, 6));
             mmc.outputBox("You selected "+this.cbMemberList.getSelectedItem().toString());
+            mc.findMember(iMI);
+            this.loadMemberData();
         }
     }//GEN-LAST:event_cbMemberListActionPerformed
 
@@ -694,7 +700,28 @@ public class memberF extends javax.swing.JFrame {
     }
     public void loadMemberData(){
         this.clearMemberForm();
+        this.lbMI.setText(mmc.int2String(mc.getID()));
+        this.tFN.setText(mc.getFN());
+        this.tMN.setText(mc.getMN());
+        this.tLN.setText(mc.getLN());
         
+        this.tSA.setText(mc.getSA());
+        this.tCY.setText(mc.getCY());
+        this.tST.setText(mc.getST());
+        this.tZC.setText(mc.getZC());
+        
+        this.tHP.setText(mc.getHP());
+        this.tWP.setText(mc.getWP());
+        this.tCP.setText(mc.getCP());
+        this.tEM.setText(mc.getEM());
+        
+        this.tBD.setText(mc.getBD());
+        this.tJD.setText(mc.getJD());
+        this.tWD.setText(mc.getWD());
+        
+        this.chSaved.setSelected(mc.getSaved().equals("Y"));
+        this.chBaptized.setSelected(mc.getSaved().equals("Y"));
+        this.chShared.setSelected(mc.getSaved().equals("Y"));            
     }
     public void clearMemberForm(){
         this.lbMI.setText("0");

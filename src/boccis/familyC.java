@@ -16,9 +16,10 @@ import java.util.logging.Logger;
  * @author tommybennett
  */
 public class familyC {
+    addressC ac = new addressC();
     memberC mc = new memberC();
     methodC mmc = new methodC();
-    dataC dc = new dataC();
+    //dataC dc = new dataC();
     
     private int family_id;
     private int member_id;
