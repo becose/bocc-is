@@ -172,7 +172,7 @@ public class memberC {
         mmc.outputBox("Saving Member " + this.getMemberInfo() + "...");
         try {
             Statement stmt;
-            dataC dc = new dataC();
+            //dataC dc = new dataC();
             try (Connection conn = dc.connectDB()) {
                 stmt = conn.createStatement();
                 String sql = "INSERT INTO member_tbl (member_fname,"
@@ -208,7 +208,7 @@ public class memberC {
         mmc.outputBox("Updating Member : " + this.getMemberInfo());
         try {
             Statement stmt;
-            dataC dc = new dataC();
+            //dataC dc = new dataC();
             try (Connection conn = dc.connectDB()) {
                 stmt = conn.createStatement();
                 String sql = "UPDATE member_tbl SET " +
@@ -249,7 +249,7 @@ public class memberC {
         mmc.outputBox("De-Activating/Activating Member : " + this.getMemberInfo());
         try {
             Statement stmt;
-            dataC dc = new dataC();
+            //dataC dc = new dataC();
             try (Connection conn = dc.connectDB()) {
                 stmt = conn.createStatement();
                 String sql = "UPDATE member_tbl SET " +
@@ -291,10 +291,10 @@ public class memberC {
         Connection conn;
         Statement stmt;
         ResultSet rs;
-        dataC mdc = new dataC();
-        conn = mdc.connectDB();
+        //dataC mdc = new dataC();
+        conn = dc.connectDB();
         stmt = conn.createStatement();     
-        String sql = "SELECT * FROM member_tbl";            
+        String sql = "SELECT * FROM member_tbl WHERE member_status='A'";            
         rs = stmt.executeQuery(sql);
       
         return rs;      
@@ -325,7 +325,7 @@ public class memberC {
         mmc.outputBox("Updating Member Address...");
         try {
             Statement stmt;
-            dataC dc = new dataC();
+            //dataC dc = new dataC();
             try (Connection conn = dc.connectDB()) {
                 stmt = conn.createStatement();
                 String sql = "UPDATE member_tbl SET " +
