@@ -12,6 +12,9 @@ package boccis;
 public class loginF extends javax.swing.JFrame {
     loginC lc = new loginC();
     methodC mmc = new methodC();
+    
+    int iFailedCount = 0;
+
     /**
      * Creates new form loginF
      */
@@ -30,7 +33,9 @@ public class loginF extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         bLogin = new javax.swing.JButton();
         bCancel = new javax.swing.JButton();
@@ -38,33 +43,47 @@ public class loginF extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         tUN = new javax.swing.JTextField();
         tPW = new javax.swing.JPasswordField();
+        lbStatus = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel3.setText("Designed and Developed by Bennett Consulting Services (2016)");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 640, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 41, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(7, Short.MAX_VALUE)
+                .addComponent(jLabel3)
+                .addContainerGap())
         );
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel4.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel4.setText("BOCC New Member Information System -> Access Screen");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 640, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 54, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel4)
+                .addContainerGap())
         );
 
         jPanel3.setBackground(new java.awt.Color(153, 204, 255));
@@ -89,6 +108,11 @@ public class loginF extends javax.swing.JFrame {
 
         tPW.setText("jPasswordField1");
 
+        lbStatus.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
+        lbStatus.setForeground(new java.awt.Color(204, 0, 51));
+        lbStatus.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lbStatus.setText("Login Please . . .");
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -110,7 +134,11 @@ public class loginF extends javax.swing.JFrame {
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(tUN)
                             .addComponent(tPW, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(172, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lbStatus, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -123,11 +151,13 @@ public class loginF extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(tPW, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(bLogin)
                     .addComponent(bCancel))
-                .addGap(35, 35, 35))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lbStatus)
+                .addGap(13, 13, 13))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -158,11 +188,34 @@ public class loginF extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void bLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bLoginActionPerformed
+        boolean isLoggedIn = false;
+        
         lc.setUN(this.tUN.getText());
         lc.setPW(this.tPW.getPassword());
         System.out.println("User " + lc.getUN() + " and " + lc.getPW() +  " found: " + lc.checkLogin());
-        
+
+
         if(lc.checkLogin()){
+            isLoggedIn = true;
+        } else {
+            this.tPW.setText("");
+            this.tUN.setText("");
+
+            this.iFailedCount++;
+            
+            this.lbStatus.setText("WARNING: Access Denied . . ."+
+                                  "Failed attempt "+this.iFailedCount);
+            
+            this.tUN.requestFocus();
+        }
+        if(this.iFailedCount<=3){
+        } else {
+            this.msgLogin(80000);
+            this.iFailedCount = 0;
+            this.lbStatus.setText("Login Please . . .");
+        }
+
+        if(isLoggedIn){
             mainmenuF mmf = new mainmenuF();
             mmf.setVisible(true);
             this.setVisible(false);            
@@ -180,15 +233,11 @@ public class loginF extends javax.swing.JFrame {
 //        loginF lf = new loginF();
 //        lf.setVisible(true);
 //    }
-    private boolean checkLogin(){
-        boolean loginOK = false;
-        
-        
-        
-        return loginOK;
-    }
-    private void runLogin(){
-        
+    private void msgLogin(int iSec){
+        for(long i=0;i<iSec;i++){
+           this.lbStatus.setText("Waiting "+(i/10000)+"s . . .");
+           
+       }          
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -196,9 +245,12 @@ public class loginF extends javax.swing.JFrame {
     private javax.swing.JButton bLogin;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JLabel lbStatus;
     private javax.swing.JPasswordField tPW;
     private javax.swing.JTextField tUN;
     // End of variables declaration//GEN-END:variables
