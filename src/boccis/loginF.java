@@ -5,6 +5,10 @@
  */
 package boccis;
 
+import java.util.concurrent.TimeUnit;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author tommybennett
@@ -208,9 +212,14 @@ public class loginF extends javax.swing.JFrame {
             
             this.tUN.requestFocus();
         }
-        if(this.iFailedCount<=3){
+        if(this.iFailedCount<3){
         } else {
-            this.msgLogin(80000);
+            this.lbStatus.setText("Waiting 5s . . .");
+            try {
+                this.waitTime(5);
+            } catch (InterruptedException ex) {
+                Logger.getLogger(loginF.class.getName()).log(Level.SEVERE, null, ex);
+            }
             this.iFailedCount = 0;
             this.lbStatus.setText("Login Please . . .");
         }
@@ -233,11 +242,8 @@ public class loginF extends javax.swing.JFrame {
 //        loginF lf = new loginF();
 //        lf.setVisible(true);
 //    }
-    private void msgLogin(int iSec){
-        for(long i=0;i<iSec;i++){
-           this.lbStatus.setText("Waiting "+(i/10000)+"s . . .");
-           
-       }          
+    private void waitTime(int iSec) throws InterruptedException{       
+        TimeUnit.SECONDS.sleep(iSec);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
