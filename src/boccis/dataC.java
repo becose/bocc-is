@@ -15,18 +15,24 @@ import java.sql.SQLException;
  */
 public class dataC {
     methodC mmc = new methodC();
-    
-    public Connection connectDB(){
+    boolean notSuccessful = true;
+    String tryLocation = "jdbc:sqlite:C:\\SysDev\\BOCCIS\\bocc.db";
+    //String tryLocation = "jdbc:sqlite:/Users/tommybennett/SysDev/BOCCIS/bocc.db";
+
+        public Connection connectDB(){
         Connection conn = null;
-       
-        try {
-            Class.forName("org.sqlite.JDBC");
-            conn = DriverManager.getConnection("jdbc:sqlite:/Users/tommybennett/SysDev/BOCCIS/bocc.db");
-            mmc.outputBox("Database opened successfully...");
-        } catch (ClassNotFoundException | SQLException e) {
-            System.err.println(e.getClass().getName() + ": " + e.getMessage());
-            System.exit(0);
-        }
+        
+        //while(notSuccessful){
+            try {
+                Class.forName("org.sqlite.JDBC");
+                conn = DriverManager.getConnection(this.tryLocation);
+                mmc.outputBox("Database opened successfully...");
+                this.notSuccessful = false;
+            } catch (ClassNotFoundException | SQLException e) {
+                System.err.println(e.getClass().getName() + ": " + e.getMessage());
+                System.exit(0);
+            }
+        //}
         return conn; 
     }      
 }

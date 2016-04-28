@@ -20,6 +20,7 @@ public class loginF extends javax.swing.JFrame {
     public loginF() {
         initComponents();
         this.setLocationRelativeTo(null);
+        this.tPW.setText("");
     }
 
     /**
