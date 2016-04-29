@@ -137,9 +137,11 @@ public class familyF extends javax.swing.JFrame {
         jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         jPanel3.setLayout(null);
 
+        jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 0, 51));
         jLabel1.setText("Primary Member:");
         jPanel3.add(jLabel1);
-        jLabel1.setBounds(50, 20, 105, 16);
+        jLabel1.setBounds(35, 20, 120, 16);
 
         cbPrimaryMember.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Select Primary Member ->" }));
         jPanel3.add(cbPrimaryMember);
@@ -161,7 +163,7 @@ public class familyF extends javax.swing.JFrame {
         jPanel3.add(jLabel3);
         jLabel3.setBounds(50, 100, 82, 16);
 
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/boccis/familyicon.png"))); // NOI18N
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/boccis/familytree_icon.png"))); // NOI18N
         jPanel3.add(jLabel6);
         jLabel6.setBounds(10, 10, 480, 170);
 
