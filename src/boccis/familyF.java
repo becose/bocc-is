@@ -141,29 +141,34 @@ public class familyF extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(255, 0, 51));
         jLabel1.setText("Primary Member:");
         jPanel3.add(jLabel1);
-        jLabel1.setBounds(35, 20, 120, 16);
+        jLabel1.setBounds(40, 40, 120, 16);
 
         cbPrimaryMember.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Select Primary Member ->" }));
         jPanel3.add(cbPrimaryMember);
-        cbPrimaryMember.setBounds(180, 20, 281, 27);
+        cbPrimaryMember.setBounds(180, 40, 281, 27);
 
         cbToMember.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Select To Member ->" }));
         jPanel3.add(cbToMember);
-        cbToMember.setBounds(180, 60, 281, 27);
+        cbToMember.setBounds(180, 80, 281, 27);
 
+        jLabel2.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 0, 102));
         jLabel2.setText("Relation To:");
         jPanel3.add(jLabel2);
-        jLabel2.setBounds(50, 60, 75, 16);
+        jLabel2.setBounds(40, 80, 80, 16);
 
         cbRelation.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "001 - Spouse", "002 - Child", "003 - Parent", "004 - Sibling", "005 - Relative" }));
         jPanel3.add(cbRelation);
-        cbRelation.setBounds(180, 100, 155, 27);
+        cbRelation.setBounds(180, 120, 155, 27);
 
+        jLabel3.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 0, 51));
         jLabel3.setText("Relationship:");
         jPanel3.add(jLabel3);
-        jLabel3.setBounds(50, 100, 82, 16);
+        jLabel3.setBounds(42, 120, 90, 16);
 
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/boccis/familytree_icon.png"))); // NOI18N
+        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/boccis/connected_icon.png"))); // NOI18N
         jPanel3.add(jLabel6);
         jLabel6.setBounds(10, 10, 480, 170);
 

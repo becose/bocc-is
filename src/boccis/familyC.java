@@ -17,6 +17,7 @@ public class familyC {
     //dataC dc = new dataC();
     
     private int family_id;
+    private int link_id;
     private int member_id;
     private int connected_id;
     private int relation_id;
@@ -28,6 +29,12 @@ public class familyC {
     public int getFI(){
         return this.family_id;
     }
+    public void setLI(int iValue){
+        this.link_id = iValue;
+    }
+    public int getLI(){
+        return this.link_id;
+    }    
     public void setMI(int iValue){
         this.member_id = iValue;
     }

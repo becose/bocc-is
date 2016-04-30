@@ -4,6 +4,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import net.proteanit.sql.DbUtils;
 
 /**
  *
@@ -716,7 +717,9 @@ public class memberF extends javax.swing.JFrame {
         
         this.chSaved.setSelected(mc.getSaved().equals("Y"));
         this.chBaptized.setSelected(mc.getSaved().equals("Y"));
-        this.chShared.setSelected(mc.getSaved().equals("Y"));            
+        this.chShared.setSelected(mc.getSaved().equals("Y")); 
+        
+        this.loadMemberFamily(mc.getID());
     }
     public void clearMemberForm(){
         this.lbMI.setText("0");
@@ -741,6 +744,13 @@ public class memberF extends javax.swing.JFrame {
         this.chSaved.setSelected(false);
         this.chBaptized.setSelected(false);
         this.chShared.setSelected(false);        
+    }
+    public void loadMemberFamily(int iValue){
+        try {
+            this.tblFamily.setModel(DbUtils.resultSetToTableModel(mc.getFamily4Table(iValue)));
+        } catch (SQLException ex) {
+            Logger.getLogger(memberF.class.getName()).log(Level.SEVERE, null, ex);
+        }           
     }
     public void writeMemberData(){
         String writingData;

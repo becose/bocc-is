@@ -106,7 +106,7 @@ public class mainmenuF extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu1);
 
-        jMenu2.setText("Edit");
+        jMenu2.setText("Reports");
         jMenuBar1.add(jMenu2);
 
         jMenu3.setText("Exit");

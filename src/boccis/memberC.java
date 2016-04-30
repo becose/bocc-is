@@ -294,6 +294,21 @@ public class memberC {
       
         return rs;      
     }
+    public ResultSet getFamily4Table(int iValue) throws SQLException{
+        Connection conn;
+        Statement stmt;
+        ResultSet rs;
+        conn = dc.connectDB();
+        stmt = conn.createStatement();     
+        String sql = "SELECT f.family_member_id AS MemberID, m.member_fullname AS MemberName, " +
+                     "f.family_relation_id as Relation " +
+                     "FROM family_tbl f " +
+                     "JOIN member_tbl m ON f.family_member_id=m.member_id" +
+                     " WHERE f.family_connected_id = " + iValue;            
+        rs = stmt.executeQuery(sql);
+        
+        return rs;        
+    }
     public void loadMember(ResultSet rsValue) throws SQLException{
         this.member_id = rsValue.getInt("member_id");
         this.member_firstname = rsValue.getString("member_fname");
