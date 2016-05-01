@@ -301,7 +301,7 @@ public class memberC {
         conn = dc.connectDB();
         stmt = conn.createStatement();     
         String sql = "SELECT f.family_member_id AS MemberID, m.member_fullname AS MemberName, " +
-                     "f.family_relation_id as Relation " +
+                     "f.family_relation_name as Relation " +
                      "FROM family_tbl f " +
                      "JOIN member_tbl m ON f.family_member_id=m.member_id" +
                      " WHERE f.family_connected_id = " + iValue;            

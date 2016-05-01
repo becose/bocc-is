@@ -21,6 +21,7 @@ public class familyC {
     private int member_id;
     private int connected_id;
     private int relation_id;
+    private String relation_name;
     private String family_date;
     
     public void setFI(int iValue){
@@ -53,6 +54,12 @@ public class familyC {
     public int getRI(){
         return this.relation_id;
     }
+    public void setRN(String sValue){
+        this.relation_name = sValue;
+    }
+    public String getRN(){
+        return this.relation_name;
+    }    
     public void setDT(String sValue){
         this.family_date = sValue;
     }
@@ -68,9 +75,11 @@ public class familyC {
             try (Connection conn = dc.connectDB()) {
                 stmt = conn.createStatement();
                 String sql = "INSERT INTO family_tbl (family_member_id,"
-                        + "family_connected_id,family_relation_id,family_date) "
+                        + "family_connected_id,family_relation_id,family_date,"
+                        + "family_relation_name) "
                         + "VALUES ("+this.member_id+","+this.connected_id
                         + ","+this.relation_id+",'"+this.family_date
+                        +"','"+this.relation_name
                         + "');";
                 mmc.outputBox(sql);
                 stmt.executeUpdate(sql);

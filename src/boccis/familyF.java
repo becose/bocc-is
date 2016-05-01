@@ -213,11 +213,12 @@ public class familyF extends javax.swing.JFrame {
             fc.setMI(mmc.String2int(sMI));
             fc.setRI(mmc.String2int(sRI));
             fc.setDT(mmc.getCurrentDate());
+            fc.setRN(this.cbRelation.getSelectedItem().toString().substring(6));
             
             if(fc.linkFamily()){
                 mmc.outputBox("Member -> "+fc.getMemberName(fc.getMI())
                             +" Connected -> "+fc.getMemberName(fc.getCI())
-                            +" Relation -> "+fc.getRI()
+                            +" Relation -> "+fc.getRN()
                             +" Date: "+fc.getDT());
                 if(fc.getRI()==1 || 
                    fc.getRI()==4 ||
@@ -228,10 +229,11 @@ public class familyF extends javax.swing.JFrame {
                     fc.setCI(tempMI);
                     fc.setMI(tempCI);
                     
+                    
                     if(fc.linkFamily()){
                         mmc.outputBox("Member -> "+fc.getMemberName(fc.getMI())
                                     +" Connected -> "+fc.getMemberName(fc.getCI())
-                                    +" Relation -> "+fc.getRI()
+                                    +" Relation -> "+fc.getRN()
                                     +" Date: "+fc.getDT());                        
                     }                    
                 }
@@ -242,11 +244,12 @@ public class familyF extends javax.swing.JFrame {
                     fc.setCI(tempMI);
                     fc.setMI(tempCI);
                     fc.setRI(2);
+                    fc.setRN("Child");
                     
                     if(fc.linkFamily()){
                         mmc.outputBox("Member -> "+fc.getMemberName(fc.getMI())
                                     +" Connected -> "+fc.getMemberName(fc.getCI())
-                                    +" Relation -> "+fc.getRI()
+                                    +" Relation -> "+fc.getRN()
                                     +" Date: "+fc.getDT());                        
                     }         
                    
