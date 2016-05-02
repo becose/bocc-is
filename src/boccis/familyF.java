@@ -21,6 +21,7 @@ public class familyF extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);    
         this.loadPrimaryMember();
         this.loadToMember();
+        this.chAddress.setEnabled(false);
     }
     private void loadPrimaryMember() throws SQLException{
         ResultSet rs = mc.getMembers();
@@ -67,7 +68,8 @@ public class familyF extends javax.swing.JFrame {
         cbToMember = new javax.swing.JComboBox();
         jLabel2 = new javax.swing.JLabel();
         cbRelation = new javax.swing.JComboBox();
-        jLabel3 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        chAddress = new javax.swing.JCheckBox();
         jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -158,14 +160,23 @@ public class familyF extends javax.swing.JFrame {
         jLabel2.setBounds(40, 80, 80, 16);
 
         cbRelation.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "001 - Spouse", "002 - Child", "003 - Parent", "004 - Sibling", "005 - Relative" }));
+        cbRelation.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbRelationActionPerformed(evt);
+            }
+        });
         jPanel3.add(cbRelation);
         cbRelation.setBounds(180, 120, 155, 27);
 
-        jLabel3.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 0, 51));
-        jLabel3.setText("Relationship:");
-        jPanel3.add(jLabel3);
-        jLabel3.setBounds(42, 120, 90, 16);
+        jLabel5.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 0, 51));
+        jLabel5.setText("Relationship:");
+        jPanel3.add(jLabel5);
+        jLabel5.setBounds(42, 120, 90, 16);
+
+        chAddress.setText("Copy Address to Child");
+        jPanel3.add(chAddress);
+        chAddress.setBounds(180, 150, 180, 23);
 
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/boccis/connected_icon.png"))); // NOI18N
@@ -190,10 +201,10 @@ public class familyF extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -252,14 +263,15 @@ public class familyF extends javax.swing.JFrame {
                                         +" Connected -> "+fc.getMemberName(fc.getCI())
                                         +" Relation -> "+fc.getRN()
                                         +" Date: "+fc.getDT());                        
-                        }         
-
-                        if(mc.findMember(tempMI)){
-                            mmc.outputBox("Found member to get address from...");
+                        } 
+                        if(this.chAddress.isSelected()==true){
+                            if(mc.findMember(tempMI)){
+                                mmc.outputBox("Found member to get address from...");
+                            }
+                            if(mc.saveMemberAddress(tempCI, tempMI)){
+                                mmc.outputBox("Secondary member address updated...");
+                            }    
                         }
-                        if(mc.saveMemberAddress(tempCI, tempMI)){
-                            mmc.outputBox("Secondary member address updated...");
-                        }                   
                     }
                 }
             }
@@ -267,6 +279,10 @@ public class familyF extends javax.swing.JFrame {
             mmc.messageBox("ERROR -> You did not Select the Primary or Link To Member nor can it be the same...");
         }
     }//GEN-LAST:event_bLinkActionPerformed
+
+    private void cbRelationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbRelationActionPerformed
+        this.chAddress.setEnabled(true);
+    }//GEN-LAST:event_cbRelationActionPerformed
 
 //    /**
 //     * @param args the command line arguments
@@ -309,10 +325,11 @@ public class familyF extends javax.swing.JFrame {
     private javax.swing.JComboBox cbPrimaryMember;
     private javax.swing.JComboBox cbRelation;
     private javax.swing.JComboBox cbToMember;
+    private javax.swing.JCheckBox chAddress;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
