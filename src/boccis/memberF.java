@@ -15,6 +15,8 @@ public class memberF extends javax.swing.JFrame {
     memberC mc = new memberC();
     addressC ac = new addressC();
     
+    private int iClickCount = 0;
+    
     boolean isLoaded = true;
     /**
      * Creates new form memberF
@@ -409,6 +411,11 @@ public class memberF extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tblFamily.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblFamilyMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(tblFamily);
 
         javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
@@ -617,6 +624,21 @@ public class memberF extends javax.swing.JFrame {
             this.loadMemberData();
         }
     }//GEN-LAST:event_cbMemberListActionPerformed
+
+    private void tblFamilyMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblFamilyMouseClicked
+        if(evt.getClickCount() == 1){
+            int iRow = this.tblFamily.getSelectedRow();
+            //mc.outputBox("Current row: " + iRow);
+            if(iRow>-1){
+                int iMID = mmc.String2int(this.tblFamily.getValueAt(iRow, 0).toString());
+                //mc.outputBox("Clicked ID : " + iLID);
+                this.iClickCount = 0;
+                mc.findMember(iMID);
+                this.loadMemberData();
+            }
+        }
+        evt.consume();
+    }//GEN-LAST:event_tblFamilyMouseClicked
 
 //    /**
 //     * @param args the command line arguments

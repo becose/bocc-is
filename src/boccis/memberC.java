@@ -294,6 +294,18 @@ public class memberC {
       
         return rs;      
     }
+    public ResultSet getMembersNeedingClass() throws SQLException{
+        Connection conn;
+        Statement stmt;
+        ResultSet rs;
+        //dataC mdc = new dataC();
+        conn = dc.connectDB();
+        stmt = conn.createStatement();     
+        String sql = "SELECT * FROM member_tbl WHERE member_classdate=''";            
+        rs = stmt.executeQuery(sql);
+      
+        return rs;      
+    }
     public ResultSet getFamily4Table(int iValue) throws SQLException{
         Connection conn;
         Statement stmt;
