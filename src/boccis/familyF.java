@@ -215,50 +215,52 @@ public class familyF extends javax.swing.JFrame {
             fc.setDT(mmc.getCurrentDate());
             fc.setRN(this.cbRelation.getSelectedItem().toString().substring(6));
             
-            if(fc.linkFamily()){
-                mmc.outputBox("Member -> "+fc.getMemberName(fc.getMI())
-                            +" Connected -> "+fc.getMemberName(fc.getCI())
-                            +" Relation -> "+fc.getRN()
-                            +" Date: "+fc.getDT());
-                if(fc.getRI()==1 || 
-                   fc.getRI()==4 ||
-                   fc.getRI()==5){ // 1-Spouse, 4-Sibling and 5-Relative to reverse link
-                    int tempMI = fc.getMI();
-                    int tempCI = fc.getCI();
-                    
-                    fc.setCI(tempMI);
-                    fc.setMI(tempCI);
-                    
-                    
-                    if(fc.linkFamily()){
-                        mmc.outputBox("Member -> "+fc.getMemberName(fc.getMI())
-                                    +" Connected -> "+fc.getMemberName(fc.getCI())
-                                    +" Relation -> "+fc.getRN()
-                                    +" Date: "+fc.getDT());                        
-                    }                    
-                }
-                if(fc.getRI()==3){ // 3 - Parent to 2 - Child
-                    int tempMI = fc.getMI();
-                    int tempCI = fc.getCI();
-                    
-                    fc.setCI(tempMI);
-                    fc.setMI(tempCI);
-                    fc.setRI(2);
-                    fc.setRN("Child");
-                    
-                    if(fc.linkFamily()){
-                        mmc.outputBox("Member -> "+fc.getMemberName(fc.getMI())
-                                    +" Connected -> "+fc.getMemberName(fc.getCI())
-                                    +" Relation -> "+fc.getRN()
-                                    +" Date: "+fc.getDT());                        
-                    }         
-                   
-                    if(mc.findMember(tempMI)){
-                        mmc.outputBox("Found member to get address from...");
+            if(!fc.checkForLinked(fc.getMI(),fc.getCI(),fc.getRI())){
+                if(fc.linkFamily()){
+                    mmc.outputBox("Member -> "+fc.getMemberName(fc.getMI())
+                                +" Connected -> "+fc.getMemberName(fc.getCI())
+                                +" Relation -> "+fc.getRN()
+                                +" Date: "+fc.getDT());
+                    if(fc.getRI()==1 || 
+                       fc.getRI()==4 ||
+                       fc.getRI()==5){ // 1-Spouse, 4-Sibling and 5-Relative to reverse link
+                        int tempMI = fc.getMI();
+                        int tempCI = fc.getCI();
+
+                        fc.setCI(tempMI);
+                        fc.setMI(tempCI);
+
+
+                        if(fc.linkFamily()){
+                            mmc.outputBox("Member -> "+fc.getMemberName(fc.getMI())
+                                        +" Connected -> "+fc.getMemberName(fc.getCI())
+                                        +" Relation -> "+fc.getRN()
+                                        +" Date: "+fc.getDT());                        
+                        }                    
                     }
-                    if(mc.saveMemberAddress(tempCI, tempMI)){
-                        mmc.outputBox("Secondary member address updated...");
-                    }                   
+                    if(fc.getRI()==3){ // 3 - Parent to 2 - Child
+                        int tempMI = fc.getMI();
+                        int tempCI = fc.getCI();
+
+                        fc.setCI(tempMI);
+                        fc.setMI(tempCI);
+                        fc.setRI(2);
+                        fc.setRN("Child");
+
+                        if(fc.linkFamily()){
+                            mmc.outputBox("Member -> "+fc.getMemberName(fc.getMI())
+                                        +" Connected -> "+fc.getMemberName(fc.getCI())
+                                        +" Relation -> "+fc.getRN()
+                                        +" Date: "+fc.getDT());                        
+                        }         
+
+                        if(mc.findMember(tempMI)){
+                            mmc.outputBox("Found member to get address from...");
+                        }
+                        if(mc.saveMemberAddress(tempCI, tempMI)){
+                            mmc.outputBox("Secondary member address updated...");
+                        }                   
+                    }
                 }
             }
         } else {

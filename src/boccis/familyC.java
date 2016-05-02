@@ -1,6 +1,7 @@
 package boccis;
 
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
@@ -14,7 +15,7 @@ public class familyC {
     addressC ac = new addressC();
     memberC mc = new memberC();
     methodC mmc = new methodC();
-    //dataC dc = new dataC();
+    dataC dc = new dataC();
     
     private int family_id;
     private int link_id;
@@ -97,6 +98,28 @@ public class familyC {
     }
     public boolean findFamily(int iValue){
         return true;
+    }
+    public boolean checkForLinked(int iFMI, int iFCI, int iFRI){
+        boolean isLinked = false;
+        try {
+            try (Connection conn = dc.connectDB()) {
+                Statement stmt = conn.createStatement();
+                String sql = "SELECT * FROM family_tbl WHERE family_member_id="+iFMI
+                        + " AND family_connected_id="+iFCI
+                        + " AND family_relation_id="+iFRI;
+                
+                ResultSet rs = stmt.executeQuery(sql);
+                //mmc.outputBox(sql);
+                if(rs.next()){
+                    isLinked = true;
+                    mmc.outputBox("Link already established on "+rs.getString("family_date"));
+                }                
+            }
+            //System.out.println("Database closed...");
+        } catch (SQLException ex) {
+            Logger.getLogger(familyC.class.getName()).log(Level.SEVERE, null, ex);
+        }             
+        return isLinked;
     }
     public String getMemberName(int iValue){
         mc.findMember(iValue);

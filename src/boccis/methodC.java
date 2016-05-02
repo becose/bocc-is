@@ -7,7 +7,6 @@ package boccis;
 
 import java.io.File;
 import java.text.DateFormat;
-import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -105,8 +104,8 @@ public class methodC {
         Date obDate = new Date();
         SimpleDateFormat obDateFormat = new SimpleDateFormat(
                         "MM/dd/yyyy");
-        this.outputBox("Current Time/Date : "
-                        + obDateFormat.format(obDate.getTime()));
+        //this.outputBox("Current Time/Date : "
+        //                + obDateFormat.format(obDate.getTime()));
         return obDateFormat.format(obDate.getTime());
     }
     public String int2String(int iValue) {
