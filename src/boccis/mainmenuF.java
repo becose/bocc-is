@@ -179,8 +179,12 @@ public class mainmenuF extends javax.swing.JFrame {
     }//GEN-LAST:event_bQuitActionPerformed
 
     private void bNewMembersClassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bNewMembersClassActionPerformed
-        trainingF tf = new trainingF();
-        tf.setVisible(true);
+        try {
+            trainingF tf = new trainingF();
+            tf.setVisible(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(mainmenuF.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_bNewMembersClassActionPerformed
 
     /**

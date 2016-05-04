@@ -16,6 +16,7 @@ import net.proteanit.sql.DbUtils;
  */
 public class trainingF extends javax.swing.JFrame {
     memberC mc = new memberC();
+    trainingC tc = new trainingC();
     
     boolean isLoaded = true;
     /**
