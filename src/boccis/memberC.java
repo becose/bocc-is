@@ -301,7 +301,9 @@ public class memberC {
         //dataC mdc = new dataC();
         conn = dc.connectDB();
         stmt = conn.createStatement();     
-        String sql = "SELECT * FROM member_tbl WHERE member_classdate=''";            
+        String sql = "SELECT member_id AS MemberID, member_fullname AS Member "
+                   + "FROM member_tbl "
+                   + "WHERE member_classdate='' OR member_classdate IS NULL";            
         rs = stmt.executeQuery(sql);
       
         return rs;      
