@@ -23,6 +23,7 @@ public class trainingF extends javax.swing.JFrame {
     trainingC tc = new trainingC();
     
     boolean isLoaded = true;
+    private int iClickCount = 0;
     /**
      * Creates new form trainingF
      */
@@ -139,6 +140,11 @@ public class trainingF extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tblTraining.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblTrainingMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tblTraining);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -215,6 +221,21 @@ public class trainingF extends javax.swing.JFrame {
         tc.setTD(sdf.format(dValue));
         mmc.messageBox(tc.getTD());
     }//GEN-LAST:event_bScheduleActionPerformed
+
+    private void tblTrainingMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblTrainingMouseClicked
+        if(evt.getClickCount() == 1){
+            int iRow = this.tblTraining.getSelectedRow();
+            //mc.outputBox("Current row: " + iRow);
+            if(iRow>-1){
+                int iMID = mmc.String2int(this.tblTraining.getValueAt(iRow, 0).toString());
+                //mc.outputBox("Clicked ID : " + iLID);
+                this.iClickCount = 0;
+                mc.findMember(iMID);
+                //this.loadMemberData();
+            }
+        }
+        evt.consume();
+    }//GEN-LAST:event_tblTrainingMouseClicked
 
     /**
      * @param args the command line arguments
