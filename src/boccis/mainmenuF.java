@@ -40,7 +40,7 @@ public class mainmenuF extends javax.swing.JFrame {
         jMenu1 = new javax.swing.JMenu();
         bMembers = new javax.swing.JMenuItem();
         bFamily = new javax.swing.JMenuItem();
-        bNewMembersClass = new javax.swing.JMenuItem();
+        bTraining = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenu3 = new javax.swing.JMenu();
         bQuit = new javax.swing.JMenuItem();
@@ -105,13 +105,13 @@ public class mainmenuF extends javax.swing.JFrame {
         });
         jMenu1.add(bFamily);
 
-        bNewMembersClass.setText("New Members Class");
-        bNewMembersClass.addActionListener(new java.awt.event.ActionListener() {
+        bTraining.setText("Training");
+        bTraining.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bNewMembersClassActionPerformed(evt);
+                bTrainingActionPerformed(evt);
             }
         });
-        jMenu1.add(bNewMembersClass);
+        jMenu1.add(bTraining);
 
         jMenuBar1.add(jMenu1);
 
@@ -178,14 +178,14 @@ public class mainmenuF extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_bQuitActionPerformed
 
-    private void bNewMembersClassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bNewMembersClassActionPerformed
+    private void bTrainingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bTrainingActionPerformed
         try {
             trainingF tf = new trainingF();
             tf.setVisible(true);
         } catch (SQLException ex) {
             Logger.getLogger(mainmenuF.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_bNewMembersClassActionPerformed
+    }//GEN-LAST:event_bTrainingActionPerformed
 
     /**
      * @param args the command line arguments
@@ -225,8 +225,8 @@ public class mainmenuF extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem bFamily;
     private javax.swing.JMenuItem bMembers;
-    private javax.swing.JMenuItem bNewMembersClass;
     private javax.swing.JMenuItem bQuit;
+    private javax.swing.JMenuItem bTraining;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JMenu jMenu1;

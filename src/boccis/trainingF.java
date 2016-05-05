@@ -15,6 +15,7 @@ import net.proteanit.sql.DbUtils;
  * @author tommybennett
  */
 public class trainingF extends javax.swing.JFrame {
+    methodC mmc = new methodC();
     memberC mc = new memberC();
     trainingC tc = new trainingC();
     
@@ -206,7 +207,8 @@ public class trainingF extends javax.swing.JFrame {
     }//GEN-LAST:event_bCloseActionPerformed
 
     private void bScheduleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bScheduleActionPerformed
-
+        tc.setTD(this.dtClassDate.getDate().toString());
+        mmc.messageBox(tc.getTD());
     }//GEN-LAST:event_bScheduleActionPerformed
 
     /**
