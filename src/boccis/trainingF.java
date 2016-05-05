@@ -6,6 +6,9 @@
 package boccis;
 
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import net.proteanit.sql.DbUtils;
@@ -207,7 +210,9 @@ public class trainingF extends javax.swing.JFrame {
     }//GEN-LAST:event_bCloseActionPerformed
 
     private void bScheduleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bScheduleActionPerformed
-        tc.setTD(this.dtClassDate.getDate().toString());
+        Date dValue = this.dtClassDate.getDate();
+        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
+        tc.setTD(sdf.format(dValue));
         mmc.messageBox(tc.getTD());
     }//GEN-LAST:event_bScheduleActionPerformed
 
