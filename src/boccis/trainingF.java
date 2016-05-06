@@ -23,7 +23,8 @@ public class trainingF extends javax.swing.JFrame {
     trainingC tc = new trainingC();
     
     boolean isLoaded = true;
-    private int iClickCount = 0;
+    int iClickCount = 0;
+    String sClassList = ""; 
     /**
      * Creates new form trainingF
      */
@@ -59,7 +60,7 @@ public class trainingF extends javax.swing.JFrame {
         tblTraining = new javax.swing.JTable();
         jPanel4 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        tNotes = new javax.swing.JTextArea();
+        tClassList = new javax.swing.JTextArea();
         dtClassDate = new com.toedter.calendar.JDateChooser();
         jLabel1 = new javax.swing.JLabel();
 
@@ -168,9 +169,9 @@ public class trainingF extends javax.swing.JFrame {
         jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel4.setLayout(null);
 
-        tNotes.setColumns(20);
-        tNotes.setRows(5);
-        jScrollPane2.setViewportView(tNotes);
+        tClassList.setColumns(20);
+        tClassList.setRows(5);
+        jScrollPane2.setViewportView(tClassList);
 
         jPanel4.add(jScrollPane2);
         jScrollPane2.setBounds(10, 50, 250, 150);
@@ -231,7 +232,7 @@ public class trainingF extends javax.swing.JFrame {
                 //mc.outputBox("Clicked ID : " + iLID);
                 this.iClickCount = 0;
                 mc.findMember(iMID);
-                //this.loadMemberData();
+                this.addMember2ClassList(mc.getFullName());
             }
         }
         evt.consume();
@@ -278,6 +279,10 @@ public class trainingF extends javax.swing.JFrame {
             Logger.getLogger(trainingF.class.getName()).log(Level.SEVERE, null, ex);
         }             
     }
+    public void addMember2ClassList(String sValue){
+        this.sClassList += (sValue + "\n");
+        this.tClassList.setText(this.sClassList);
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bClose;
     private javax.swing.JButton bSchedule;
@@ -290,7 +295,7 @@ public class trainingF extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextArea tNotes;
+    private javax.swing.JTextArea tClassList;
     private javax.swing.JTable tblTraining;
     // End of variables declaration//GEN-END:variables
 }
