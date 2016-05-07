@@ -8,6 +8,7 @@ package boccis;
 import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -25,6 +26,7 @@ public class trainingF extends javax.swing.JFrame {
     boolean isLoaded = true;
     int iClickCount = 0;
     String sClassList = ""; 
+    ArrayList<Integer> alClassList = new ArrayList<>();
     /**
      * Creates new form trainingF
      */
@@ -232,6 +234,7 @@ public class trainingF extends javax.swing.JFrame {
                 //mc.outputBox("Clicked ID : " + iLID);
                 this.iClickCount = 0;
                 mc.findMember(iMID);
+                this.alClassList.add(mc.getID());
                 this.addMember2ClassList(mc.getFullName());
             }
         }
@@ -280,8 +283,10 @@ public class trainingF extends javax.swing.JFrame {
         }             
     }
     public void addMember2ClassList(String sValue){
-        this.sClassList += (sValue + "\n");
+        //this.tClassList.setText("");
+        this.sClassList += (sValue+ "\n");
         this.tClassList.setText(this.sClassList);
+        mmc.outputBox("Class count: " + this.alClassList.size());
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bClose;
