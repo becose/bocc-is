@@ -42,7 +42,7 @@ public class trainingC {
     public String getTD(){
         return this.training_date;
     }
-    public boolean saveTraining(int iValue){
+    public boolean saveTraining(){
         boolean isSaved = false;
         //mmc.outputBox("Linking Members ...");
         try {
@@ -64,5 +64,49 @@ public class trainingC {
         }       
        
        return isSaved;
+   }
+   public ResultSet getTrainingDates() throws SQLException{
+        Connection conn;
+        Statement stmt;
+        ResultSet rs;
+        //dataC mdc = new dataC();
+        conn = dc.connectDB();
+        stmt = conn.createStatement();     
+        String sql = "SELECT DISTINCT training_date FROM training_tbl";
+
+        rs = stmt.executeQuery(sql);
+      
+        return rs;        
+   }
+   public ResultSet getClassList4Table() throws SQLException{
+        Connection conn;
+        Statement stmt;
+        ResultSet rs;
+        //dataC mdc = new dataC();
+        conn = dc.connectDB();
+        stmt = conn.createStatement();     
+        String sql = "SELECT t.training_member_id AS MemberID, m.member_fullname AS Member "
+                   + "FROM training_tbl t "
+                   + "JOIN member_tbl m ON t.training_member_id=m.member_id " 
+                   + "GROUP BY t.training_date";            
+        rs = stmt.executeQuery(sql);
+      
+        return rs;        
+   }       
+   public ResultSet getMembersByTrainingDate(String sValue) throws SQLException{
+        Connection conn;
+        Statement stmt;
+        ResultSet rs;
+        //dataC mdc = new dataC();
+        conn = dc.connectDB();
+        stmt = conn.createStatement();     
+        String sql = "SELECT t.training_member_id AS MemberID, m.member_fullname AS Member "
+                   + "FROM training_tbl t "
+                   + "JOIN member_tbl m ON t.training_member_id=m.member_id "
+                   + "WHERE training_date='"+sValue+"'";    
+        mmc.outputBox(sql);
+        rs = stmt.executeQuery(sql);
+      
+        return rs;            
    }
 }

@@ -5,8 +5,8 @@
  */
 package boccis;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -40,6 +40,7 @@ public class trainingF extends javax.swing.JFrame {
         
         if(this.isLoaded){
             this.loadTrainingTable();
+            this.loadClassDates();
             this.isLoaded = false;
         }
     }
@@ -57,9 +58,12 @@ public class trainingF extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         bClose = new javax.swing.JButton();
         bSchedule = new javax.swing.JButton();
+        bConfirm = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblTraining = new javax.swing.JTable();
+        cbTrainingDate = new javax.swing.JComboBox();
+        jLabel2 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tClassList = new javax.swing.JTextArea();
@@ -109,6 +113,8 @@ public class trainingF extends javax.swing.JFrame {
             }
         });
 
+        bConfirm.setText("Confirm Attendance");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -116,7 +122,9 @@ public class trainingF extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(bSchedule)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(bConfirm)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 238, Short.MAX_VALUE)
                 .addComponent(bClose)
                 .addContainerGap())
         );
@@ -126,7 +134,8 @@ public class trainingF extends javax.swing.JFrame {
                 .addGap(0, 7, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(bClose)
-                    .addComponent(bSchedule)))
+                    .addComponent(bSchedule)
+                    .addComponent(bConfirm)))
         );
 
         jPanel3.setBackground(new java.awt.Color(153, 255, 153));
@@ -150,19 +159,38 @@ public class trainingF extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tblTraining);
 
+        cbTrainingDate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbTrainingDateActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setText("New Member Training ->");
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(9, Short.MAX_VALUE))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 3, Short.MAX_VALUE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cbTrainingDate, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(8, Short.MAX_VALUE)
+                .addContainerGap(9, Short.MAX_VALUE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cbTrainingDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -176,7 +204,7 @@ public class trainingF extends javax.swing.JFrame {
         jScrollPane2.setViewportView(tClassList);
 
         jPanel4.add(jScrollPane2);
-        jScrollPane2.setBounds(10, 50, 250, 150);
+        jScrollPane2.setBounds(10, 50, 250, 190);
         jPanel4.add(dtClassDate);
         dtClassDate.setBounds(10, 10, 150, 28);
         jPanel4.add(jLabel1);
@@ -192,7 +220,7 @@ public class trainingF extends javax.swing.JFrame {
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 266, Short.MAX_VALUE)
+                        .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
@@ -203,10 +231,10 @@ public class trainingF extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -223,6 +251,16 @@ public class trainingF extends javax.swing.JFrame {
         SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
         tc.setTD(sdf.format(dValue));
         mmc.messageBox(tc.getTD());
+        
+        for(int iMemberID : this.alClassList){
+            tc.setMI(iMemberID);
+            
+            if(tc.saveTraining()){
+                mc.findMember(tc.getMI());
+                mmc.outputBox("Member "+mc.getFullName()+" successfully registered for class on "+tc.getTD());
+            }
+        }
+        
     }//GEN-LAST:event_bScheduleActionPerformed
 
     private void tblTrainingMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblTrainingMouseClicked
@@ -234,15 +272,33 @@ public class trainingF extends javax.swing.JFrame {
                 //mc.outputBox("Clicked ID : " + iLID);
                 this.iClickCount = 0;
                 mc.findMember(iMID);
-                this.alClassList.add(mc.getID());
-                this.addMember2ClassList(mc.getFullName());
+                if(notInClass(mc.getID())){
+                    this.alClassList.add(mc.getID());
+                    this.addMember2ClassList(mc.getFullName());    
+                }                
             }
         }
         evt.consume();
     }//GEN-LAST:event_tblTrainingMouseClicked
 
+    private void cbTrainingDateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbTrainingDateActionPerformed
+        String sComboValue = this.cbTrainingDate.getSelectedItem().toString().trim();
+        
+        this.isLoaded = true;
+        if(this.isLoaded){
+            if(!sComboValue.equals("Not Attended")){
+                this.loadTrainingTable(sComboValue);              
+            } else {
+                this.loadTrainingTable();
+            }
+            this.isLoaded = false;
+        }
+        
+    }//GEN-LAST:event_cbTrainingDateActionPerformed
+
     /**
      * @param args the command line arguments
+     * @throws java.sql.SQLException
      */
 //    public static void main(String args[]) {
 //        /* Set the Nimbus look and feel */
@@ -275,6 +331,15 @@ public class trainingF extends javax.swing.JFrame {
 //            }
 //        });
 //    }
+    public void loadClassDates() throws SQLException{
+        ResultSet rs = tc.getTrainingDates();
+        this.cbTrainingDate.removeAllItems();
+        this.cbTrainingDate.addItem("Not Attended");
+        
+        while(rs.next()){
+            this.cbTrainingDate.addItem(rs.getString("training_date"));
+        }           
+    }
     public void loadTrainingTable(){
         try {
             this.tblTraining.setModel(DbUtils.resultSetToTableModel(mc.getMembersNeedingClass()));
@@ -282,17 +347,37 @@ public class trainingF extends javax.swing.JFrame {
             Logger.getLogger(trainingF.class.getName()).log(Level.SEVERE, null, ex);
         }             
     }
+    public void loadTrainingTable(String sValue){
+        try {
+            this.tblTraining.setModel(DbUtils.resultSetToTableModel(tc.getMembersByTrainingDate(sValue)));
+        } catch (SQLException ex) {
+            Logger.getLogger(trainingF.class.getName()).log(Level.SEVERE, null, ex);
+        }             
+    }    
     public void addMember2ClassList(String sValue){
         //this.tClassList.setText("");
         this.sClassList += (sValue+ "\n");
         this.tClassList.setText(this.sClassList);
         mmc.outputBox("Class count: " + this.alClassList.size());
     }
+    public boolean notInClass(int iValue){
+        boolean isOK = true;
+        
+        if(this.alClassList.contains(iValue)){
+            isOK = false;
+            mmc.outputBox("WARNING: "+mc.getFullName()+" already on class list ....");
+        }
+        
+        return isOK;
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bClose;
+    private javax.swing.JButton bConfirm;
     private javax.swing.JButton bSchedule;
+    private javax.swing.JComboBox cbTrainingDate;
     private com.toedter.calendar.JDateChooser dtClassDate;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

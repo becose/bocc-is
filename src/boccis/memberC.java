@@ -271,10 +271,10 @@ public class memberC {
                 
                 this.loadMember(rs);
                 
-                mmc.outputBox("Member ID: " + iValue + " - " +
-                              this.getMemberInfo());
+                //mmc.outputBox("Member ID: " + iValue + " - " +
+                //              this.getMemberInfo());
                 isFound = true;
-                mmc.outputBox("Find Member " + this.getMemberInfo() + " query successfully ran...");
+                mmc.outputBox("Call -> Find Member " + this.getMemberInfo() + " query successfully ran...");
             }
             //System.out.println("Database closed...");
         } catch (SQLException ex) {
