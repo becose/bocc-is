@@ -78,6 +78,20 @@ public class trainingC {
       
         return rs;        
    }
+   public ResultSet getMembersNeedingClass() throws SQLException{
+        Connection conn;
+        Statement stmt;
+        ResultSet rs;
+        //dataC mdc = new dataC();
+        conn = dc.connectDB();
+        stmt = conn.createStatement();     
+        String sql = "SELECT member_id AS MemberID, member_fullname AS Member "
+                   + "FROM member_tbl "
+                   + "WHERE member_classdate='' OR member_classdate IS NULL";            
+        rs = stmt.executeQuery(sql);
+      
+        return rs;      
+    }   
    public ResultSet getClassList4Table() throws SQLException{
         Connection conn;
         Statement stmt;

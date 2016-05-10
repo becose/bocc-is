@@ -342,7 +342,7 @@ public class trainingF extends javax.swing.JFrame {
     }
     public void loadTrainingTable(){
         try {
-            this.tblTraining.setModel(DbUtils.resultSetToTableModel(mc.getMembersNeedingClass()));
+            this.tblTraining.setModel(DbUtils.resultSetToTableModel(tc.getMembersNeedingClass()));
         } catch (SQLException ex) {
             Logger.getLogger(trainingF.class.getName()).log(Level.SEVERE, null, ex);
         }             
