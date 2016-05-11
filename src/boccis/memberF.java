@@ -616,11 +616,23 @@ public class memberF extends javax.swing.JFrame {
 
     private void bSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bSaveActionPerformed
         this.getMemberData();
-        System.out.println("Member name: " + mc.getFullName());
+        
+        if(!mc.saveMember()){
+            mmc.outputBox("Error saving " + mc.getFullName() + "...");
+        } else {
+            this.writeMemberData("Saving...");
+        }
+        mmc.outputBox("Member name: " + mc.getFullName());
     }//GEN-LAST:event_bSaveActionPerformed
 
     private void bDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bDeleteActionPerformed
-        // TODO add your handling code here:
+        this.getMemberData();
+
+        if(!mc.deleteMember(mc.getID(),"D")){
+            mmc.outputBox("Error deleting " + mc.getFullName() + "...");
+        } else {
+            this.writeMemberData("Deleting...");
+        }        
     }//GEN-LAST:event_bDeleteActionPerformed
 
     private void bFamilyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bFamilyActionPerformed
@@ -726,12 +738,6 @@ public class memberF extends javax.swing.JFrame {
         mc.setSaved(this.chSaved.isSelected() ? "Y" : "N");
         mc.setBaptized(this.chBaptized.isSelected() ? "Y" : "N");
         mc.setShared(this.chShared.isSelected() ? "Y" : "N");
-        
-        if(!mc.saveMember()){
-            mmc.outputBox("Error saving " + mc.getFullName() + "...");
-        } else {
-            this.writeMemberData();
-        }
     }
     public void loadMemberList() throws SQLException{
         ResultSet rs = mc.getMembers();
@@ -803,15 +809,16 @@ public class memberF extends javax.swing.JFrame {
             Logger.getLogger(memberF.class.getName()).log(Level.SEVERE, null, ex);
         }           
     }
-    public void writeMemberData(){
+    public void writeMemberData(String sMessage){
         String writingData;
+        writingData = sMessage + "\n\n";
         
-        writingData = "Member name: " + mc.getFullName() +"\n\n";
+        writingData += "Member name: " + mc.getFullName() +"\n\n";
         writingData += "Address: " + mc.getSA() + "\n" + mc.getCY() +
                 ", " + mc.getST() + " " + mc.getZC() + "\n\n";
-        writingData += "Phone: " + mc.getHP() + "(home)" + "\n" +
-                       "       " + mc.getWP() + "(work)" + "\n" +
-                       "       " + mc.getCP() + "(work)" + "\n\n";
+//        writingData += "Phone: " + mc.getHP() + "(home)" + "\n" +
+//                       "       " + mc.getWP() + "(work)" + "\n" +
+//                       "       " + mc.getCP() + "(work)" + "\n\n";
         this.tNotes.setText(writingData);
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables

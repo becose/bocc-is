@@ -311,7 +311,8 @@ public class memberC {
         stmt = conn.createStatement();     
         String sql = "SELECT member_id AS MemberID, member_fullname AS Member "
                    + "FROM member_tbl "
-                   + "WHERE member_classdate='' OR member_classdate IS NULL";            
+                   + "WHERE member_classdate='' OR member_classdate IS NULL "
+                   + "AND member_status='A'";            
         rs = stmt.executeQuery(sql);
       
         return rs;      
@@ -326,7 +327,8 @@ public class memberC {
                      "f.family_relation_name as Relation " +
                      "FROM family_tbl f " +
                      "JOIN member_tbl m ON f.family_member_id=m.member_id" +
-                     " WHERE f.family_connected_id = " + iValue;            
+                     " WHERE f.family_connected_id = " + iValue +
+                     " AND member_status='A'";            
         rs = stmt.executeQuery(sql);
         
         return rs;        
