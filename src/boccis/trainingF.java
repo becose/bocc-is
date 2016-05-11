@@ -308,7 +308,11 @@ public class trainingF extends javax.swing.JFrame {
         String sDate = this.cbTrainingDate.getSelectedItem().toString().trim();
         mmc.outputBox("Confirming attendance for Class dated "+sDate);
         
-        tc.confirmTraining(sDate);
+        try {
+            tc.confirmTraining(sDate);
+        } catch (SQLException ex) {
+            Logger.getLogger(trainingF.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_bConfirmActionPerformed
 
     /**

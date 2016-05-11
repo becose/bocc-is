@@ -18,6 +18,7 @@ import java.util.logging.Logger;
  * @author tommybennett
  */
 public class trainingC {
+    memberC mc = new memberC();
     methodC mmc = new methodC();
     dataC dc = new dataC();
 
@@ -75,7 +76,13 @@ public class trainingC {
         while(rs.next()){
             alMember.add(rs.getInt("MemberID"));
         }
-        mmc.messageBox("Count "+ alMember.size());
+        //mmc.messageBox("Count "+ alMember.size());
+        
+        for(int iMember : alMember){
+            mc.findMember(iMember);
+            mc.setCD(sValue);
+            mc.confirmMemberTraining(iMember);
+        }
     }
     public ResultSet getTrainingDates() throws SQLException{
         Connection conn;

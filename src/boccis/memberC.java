@@ -36,6 +36,7 @@ public class memberC {
     private String member_shared;
     private String member_saved;
     private String member_status;
+    private String member_classdate;
     
     public void setID(int iValue){
         this.member_id = iValue;
@@ -145,6 +146,12 @@ public class memberC {
     public String getShared(){
         return this.member_shared;
     }    
+    public void setCD(String sValue){
+        this.member_classdate = sValue;
+    }
+    public String getCD(){
+        return this.member_classdate;
+    }
     public String blankValue(){
         return "";
     }  
@@ -227,6 +234,7 @@ public class memberC {
                         "', member_shared = '" + this.member_shared +                        
                         "', member_status = '" + this.member_status +
                         "', member_fullname = '" + this.getFullName() +
+                        "', member_classdate = '" + this.member_classdate +
                         "' WHERE member_id = " + iValue;
                 mmc.outputBox(sql);
                 stmt.executeUpdate(sql);
@@ -363,6 +371,28 @@ public class memberC {
                 stmt.executeUpdate(sql);
                 
                 mmc.outputBox("Member successfully updated...");
+            }
+            //mmc.outputBox("Database closed...");
+        } catch (SQLException ex) {
+            Logger.getLogger(memberC.class.getName()).log(Level.SEVERE, null, ex);
+        }               
+        return isUpdated;
+    }    
+    public boolean confirmMemberTraining(int iValue){
+        boolean isUpdated = false;
+        mmc.outputBox("Updating Member : " + this.getMemberInfo());
+        try {
+            Statement stmt;
+            //dataC dc = new dataC();
+            try (Connection conn = dc.connectDB()) {
+                stmt = conn.createStatement();
+                String sql = "UPDATE member_tbl SET " +
+                        "member_classdate = '" + this.member_classdate +
+                        "' WHERE member_id = " + iValue;
+                mmc.outputBox(sql);
+                stmt.executeUpdate(sql);
+                
+                mmc.outputBox("Member " + this.getMemberInfo() + " successfully updated...");
             }
             //mmc.outputBox("Database closed...");
         } catch (SQLException ex) {
