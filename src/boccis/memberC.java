@@ -194,7 +194,7 @@ public class memberC {
                         + "','"+this.member_shared+ "','"+this.member_joindate
                         + "','A','"+this.getFullName()
                         + "');";
-                mmc.outputBox(sql);
+                //mmc.outputBox(sql);
                 stmt.executeUpdate(sql);
                 isSaved = true;
                 mmc.outputBox("Member "+ this.getMemberInfo() + " successfully saved...");
@@ -236,7 +236,7 @@ public class memberC {
                         "', member_fullname = '" + this.getFullName() +
                         "', member_classdate = '" + this.member_classdate +
                         "' WHERE member_id = " + iValue;
-                mmc.outputBox(sql);
+                //mmc.outputBox(sql);
                 stmt.executeUpdate(sql);
                 
                 mmc.outputBox("Member " + this.getMemberInfo() + " successfully updated...");
@@ -258,7 +258,7 @@ public class memberC {
                 String sql = "UPDATE member_tbl SET " +
                         "member_status = '"+ sValue +"'" +
                         " WHERE member_id = " + iValue;
-                mmc.outputBox(sql);
+                //mmc.outputBox(sql);
                 stmt.executeUpdate(sql);
                 isDeleted = true;
                 mmc.outputBox("Member " + this.getMemberInfo() + " successfully de-activated/activated...");
@@ -369,7 +369,7 @@ public class memberC {
                         "', member_zipcode = '" + this.member_zipcode +
                         "', member_hphone = '" + this.member_homephone +
                         "' WHERE member_id = " + iToMI;
-                mmc.outputBox(sql);
+                //mmc.outputBox(sql);
                 stmt.executeUpdate(sql);
                 
                 mmc.outputBox("Member successfully updated...");
@@ -391,7 +391,7 @@ public class memberC {
                 String sql = "UPDATE member_tbl SET " +
                         "member_classdate = '" + this.member_classdate +
                         "' WHERE member_id = " + iValue;
-                mmc.outputBox(sql);
+                //mmc.outputBox(sql);
                 stmt.executeUpdate(sql);
                 
                 mmc.outputBox("Member " + this.getMemberInfo() + " successfully updated...");

@@ -106,7 +106,8 @@ public class trainingC {
         stmt = conn.createStatement();     
         String sql = "SELECT member_id AS MemberID, member_fullname AS Member "
                    + "FROM member_tbl "
-                   + "WHERE member_classdate='' OR member_classdate IS NULL";            
+                   + "WHERE member_classdate='' OR member_classdate IS NULL"; 
+        //mmc.outputBox(sql);        
         rs = stmt.executeQuery(sql);
       
         return rs;      
@@ -121,7 +122,8 @@ public class trainingC {
         String sql = "SELECT t.training_member_id AS MemberID, m.member_fullname AS Member "
                    + "FROM training_tbl t "
                    + "JOIN member_tbl m ON t.training_member_id=m.member_id " 
-                   + "GROUP BY t.training_date";            
+                   + "GROUP BY t.training_date"; 
+        //mmc.outputBox(sql);        
         rs = stmt.executeQuery(sql);
       
         return rs;        
@@ -137,7 +139,7 @@ public class trainingC {
                    + "FROM training_tbl t "
                    + "JOIN member_tbl m ON t.training_member_id=m.member_id "
                    + "WHERE training_date='"+sValue+"'";    
-        mmc.outputBox(sql);
+        //mmc.outputBox(sql);
         rs = stmt.executeQuery(sql);
       
         return rs;            
