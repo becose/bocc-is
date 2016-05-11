@@ -114,6 +114,12 @@ public class trainingF extends javax.swing.JFrame {
         });
 
         bConfirm.setText("Confirm Attendance");
+        bConfirm.setEnabled(false);
+        bConfirm.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bConfirmActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -255,7 +261,7 @@ public class trainingF extends javax.swing.JFrame {
         for(int iMemberID : this.alClassList){
             tc.setMI(iMemberID);
             
-            if(tc.saveTraining()){
+            if(tc.scheduleTraining()){
                 mc.findMember(tc.getMI());
                 mmc.outputBox("Member "+mc.getFullName()+" successfully registered for class on "+tc.getTD());
             }
@@ -287,7 +293,8 @@ public class trainingF extends javax.swing.JFrame {
         this.isLoaded = true;
         if(this.isLoaded){
             if(!sComboValue.equals("Not Attended")){
-                this.loadTrainingTable(sComboValue);              
+                this.loadTrainingTable(sComboValue); 
+                this.bConfirm.setEnabled(true);
             } else {
                 this.loadTrainingTable();
             }
@@ -295,6 +302,14 @@ public class trainingF extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_cbTrainingDateActionPerformed
+
+    private void bConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bConfirmActionPerformed
+        this.bConfirm.setEnabled(false);
+        String sDate = this.cbTrainingDate.getSelectedItem().toString().trim();
+        mmc.outputBox("Confirming attendance for Class dated "+sDate);
+        
+        tc.confirmTraining(sDate);
+    }//GEN-LAST:event_bConfirmActionPerformed
 
     /**
      * @param args the command line arguments

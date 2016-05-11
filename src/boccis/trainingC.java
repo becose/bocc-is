@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -42,7 +43,7 @@ public class trainingC {
     public String getTD(){
         return this.training_date;
     }
-    public boolean saveTraining(){
+    public boolean scheduleTraining(){
         boolean isSaved = false;
         //mmc.outputBox("Linking Members ...");
         try {
@@ -64,8 +65,19 @@ public class trainingC {
         }       
        
        return isSaved;
-   }
-   public ResultSet getTrainingDates() throws SQLException{
+    }
+    public void confirmTraining(String sValue) throws SQLException{
+        mmc.messageBox(sValue);
+
+        ResultSet rs = this.getMembersByTrainingDate(sValue);
+        ArrayList<Integer> alMember = new ArrayList<>();
+        
+        while(rs.next()){
+            alMember.add(rs.getInt("MemberID"));
+        }
+        mmc.messageBox("Count "+ alMember.size());
+    }
+    public ResultSet getTrainingDates() throws SQLException{
         Connection conn;
         Statement stmt;
         ResultSet rs;
