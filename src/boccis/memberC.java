@@ -302,6 +302,31 @@ public class memberC {
       
         return rs;      
     }
+    public ResultSet getDeactivedMembers() throws SQLException{
+        Connection conn;
+        Statement stmt;
+        ResultSet rs;
+        //dataC mdc = new dataC();
+        conn = dc.connectDB();
+        stmt = conn.createStatement();     
+        String sql = "SELECT * FROM member_tbl WHERE member_status='D'";            
+        rs = stmt.executeQuery(sql);
+      
+        return rs;      
+    }    
+    public ResultSet getDeactived4Table() throws SQLException{
+        Connection conn;
+        Statement stmt;
+        ResultSet rs;
+        //dataC mdc = new dataC();
+        conn = dc.connectDB();
+        stmt = conn.createStatement();     
+        String sql = "SELECT member_id AS MemberID, member_fullname AS Deactivated "
+                   + "FROM member_tbl WHERE member_status='D'";            
+        rs = stmt.executeQuery(sql);
+      
+        return rs;      
+    } 
     public ResultSet getMembersNeedingClass() throws SQLException{
         Connection conn;
         Statement stmt;

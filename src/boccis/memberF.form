@@ -769,10 +769,12 @@
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="bClear" min="-2" pref="102" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
+                  <Component id="bActivate" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
                   <Component id="bTraining" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
                   <Component id="bFamily" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="bClose" min="-2" pref="94" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -789,6 +791,7 @@
                       <Component id="bFamily" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="bClear" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="bTraining" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="bActivate" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="9" max="32767" attributes="0"/>
               </Group>
@@ -842,6 +845,14 @@
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bTrainingActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="bActivate">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Activate"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bActivateActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>

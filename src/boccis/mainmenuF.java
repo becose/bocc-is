@@ -41,6 +41,7 @@ public class mainmenuF extends javax.swing.JFrame {
         bMembers = new javax.swing.JMenuItem();
         bFamily = new javax.swing.JMenuItem();
         bTraining = new javax.swing.JMenuItem();
+        bActivate = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenu3 = new javax.swing.JMenu();
         bQuit = new javax.swing.JMenuItem();
@@ -112,6 +113,14 @@ public class mainmenuF extends javax.swing.JFrame {
             }
         });
         jMenu1.add(bTraining);
+
+        bActivate.setText("Activate");
+        bActivate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bActivateActionPerformed(evt);
+            }
+        });
+        jMenu1.add(bActivate);
 
         jMenuBar1.add(jMenu1);
 
@@ -187,6 +196,15 @@ public class mainmenuF extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_bTrainingActionPerformed
 
+    private void bActivateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bActivateActionPerformed
+        try {
+            activateF tf = new activateF();
+            tf.setVisible(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(mainmenuF.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_bActivateActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -223,6 +241,7 @@ public class mainmenuF extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem bActivate;
     private javax.swing.JMenuItem bFamily;
     private javax.swing.JMenuItem bMembers;
     private javax.swing.JMenuItem bQuit;

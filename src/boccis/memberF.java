@@ -101,6 +101,7 @@ public class memberF extends javax.swing.JFrame {
         bFamily = new javax.swing.JButton();
         bClear = new javax.swing.JButton();
         bTraining = new javax.swing.JButton();
+        bActivate = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -551,6 +552,13 @@ public class memberF extends javax.swing.JFrame {
             }
         });
 
+        bActivate.setText("Activate");
+        bActivate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bActivateActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -562,10 +570,12 @@ public class memberF extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(bClear, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(bActivate)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(bTraining)
-                .addGap(29, 29, 29)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(bFamily)
-                .addGap(42, 42, 42)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(bClose, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -579,7 +589,8 @@ public class memberF extends javax.swing.JFrame {
                     .addComponent(bDelete)
                     .addComponent(bFamily)
                     .addComponent(bClear)
-                    .addComponent(bTraining))
+                    .addComponent(bTraining)
+                    .addComponent(bActivate))
                 .addContainerGap(9, Short.MAX_VALUE))
         );
 
@@ -680,6 +691,15 @@ public class memberF extends javax.swing.JFrame {
             Logger.getLogger(memberF.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_bTrainingActionPerformed
+
+    private void bActivateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bActivateActionPerformed
+        try {
+            activateF af = new activateF();
+            af.setVisible(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(memberF.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_bActivateActionPerformed
 
 //    /**
 //     * @param args the command line arguments
@@ -822,6 +842,7 @@ public class memberF extends javax.swing.JFrame {
         this.tNotes.setText(writingData);
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton bActivate;
     private javax.swing.JButton bClear;
     private javax.swing.JButton bClose;
     private javax.swing.JButton bDelete;
