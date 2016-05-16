@@ -42,6 +42,7 @@ public class mainmenuF extends javax.swing.JFrame {
         bFamily = new javax.swing.JMenuItem();
         bTraining = new javax.swing.JMenuItem();
         bActivate = new javax.swing.JMenuItem();
+        bBaptism = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenu3 = new javax.swing.JMenu();
         bQuit = new javax.swing.JMenuItem();
@@ -121,6 +122,9 @@ public class mainmenuF extends javax.swing.JFrame {
             }
         });
         jMenu1.add(bActivate);
+
+        bBaptism.setText("Baptism");
+        jMenu1.add(bBaptism);
 
         jMenuBar1.add(jMenu1);
 
@@ -242,6 +246,7 @@ public class mainmenuF extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem bActivate;
+    private javax.swing.JMenuItem bBaptism;
     private javax.swing.JMenuItem bFamily;
     private javax.swing.JMenuItem bMembers;
     private javax.swing.JMenuItem bQuit;

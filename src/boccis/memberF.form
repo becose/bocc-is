@@ -769,6 +769,8 @@
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="bClear" min="-2" pref="102" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
+                  <Component id="bBaptism" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
                   <Component id="bActivate" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="bTraining" min="-2" max="-2" attributes="0"/>
@@ -792,6 +794,7 @@
                       <Component id="bClear" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="bTraining" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="bActivate" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="bBaptism" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="9" max="32767" attributes="0"/>
               </Group>
@@ -854,6 +857,11 @@
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bActivateActionPerformed"/>
           </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="bBaptism">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Baptism"/>
+          </Properties>
         </Component>
       </SubComponents>
     </Container>

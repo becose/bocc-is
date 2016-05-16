@@ -187,17 +187,14 @@
               <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="jScrollPane1" min="-2" pref="332" max="-2" attributes="0"/>
                       <Group type="102" attributes="0">
-                          <Component id="jScrollPane1" min="-2" pref="332" max="-2" attributes="0"/>
-                          <EmptySpace min="0" pref="3" max="32767" attributes="0"/>
-                      </Group>
-                      <Group type="102" attributes="0">
-                          <Component id="jLabel2" min="-2" pref="162" max="-2" attributes="0"/>
+                          <Component id="jLabel2" min="-2" pref="174" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="cbTrainingDate" max="32767" attributes="0"/>
+                          <Component id="cbTrainingDate" min="-2" pref="155" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -253,7 +250,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel2">
           <Properties>
-            <Property name="text" type="java.lang.String" value="New Member Training -&gt;"/>
+            <Property name="text" type="java.lang.String" value="Member Training Dates -&gt;"/>
           </Properties>
         </Component>
       </SubComponents>

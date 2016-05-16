@@ -102,6 +102,7 @@ public class memberF extends javax.swing.JFrame {
         bClear = new javax.swing.JButton();
         bTraining = new javax.swing.JButton();
         bActivate = new javax.swing.JButton();
+        bBaptism = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -559,6 +560,8 @@ public class memberF extends javax.swing.JFrame {
             }
         });
 
+        bBaptism.setText("Baptism");
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -570,6 +573,8 @@ public class memberF extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(bClear, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(bBaptism)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(bActivate)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(bTraining)
@@ -590,7 +595,8 @@ public class memberF extends javax.swing.JFrame {
                     .addComponent(bFamily)
                     .addComponent(bClear)
                     .addComponent(bTraining)
-                    .addComponent(bActivate))
+                    .addComponent(bActivate)
+                    .addComponent(bBaptism))
                 .addContainerGap(9, Short.MAX_VALUE))
         );
 
@@ -843,6 +849,7 @@ public class memberF extends javax.swing.JFrame {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bActivate;
+    private javax.swing.JButton bBaptism;
     private javax.swing.JButton bClear;
     private javax.swing.JButton bClose;
     private javax.swing.JButton bDelete;
