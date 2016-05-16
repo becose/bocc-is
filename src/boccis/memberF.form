@@ -763,9 +763,9 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
-                  <Component id="bSave" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="bDelete" min="-2" pref="92" max="-2" attributes="0"/>
+                  <Component id="bSave" min="-2" pref="87" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="bDelete" min="-2" pref="133" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="bClear" min="-2" pref="102" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
@@ -817,7 +817,7 @@
         </Component>
         <Component class="javax.swing.JButton" name="bDelete">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Delete"/>
+            <Property name="text" type="java.lang.String" value="De-Activate"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bDeleteActionPerformed"/>

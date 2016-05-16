@@ -81,6 +81,12 @@ public class activateF extends javax.swing.JFrame {
 
         jLabel1.setText("De-Activated Members:");
 
+        cbActivate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbActivateActionPerformed(evt);
+            }
+        });
+
         tblDeactivated.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -210,6 +216,15 @@ public class activateF extends javax.swing.JFrame {
             }               
         }        
     }//GEN-LAST:event_bActivateActionPerformed
+
+    private void cbActivateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbActivateActionPerformed
+        if(!this.isLoaded && !this.cbActivate.getSelectedItem().toString().substring(0, 6).equals("Select")){
+            int iMI = mmc.String2int(this.cbActivate.getSelectedItem().toString().substring(0, 6));
+            mmc.outputBox("You selected "+this.cbActivate.getSelectedItem().toString());
+            mc.findMember(iMI);            
+            this.lblName.setText("Re-Activate Member: "+mc.getFullName());
+        }
+    }//GEN-LAST:event_cbActivateActionPerformed
 
     /**
      * @param args the command line arguments
