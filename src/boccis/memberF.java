@@ -561,6 +561,11 @@ public class memberF extends javax.swing.JFrame {
         });
 
         bBaptism.setText("Baptism");
+        bBaptism.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bBaptismActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -707,6 +712,12 @@ public class memberF extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_bActivateActionPerformed
 
+    private void bBaptismActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bBaptismActionPerformed
+        baptismF bf = new baptismF();
+        bf.setVisible(true);
+        
+    }//GEN-LAST:event_bBaptismActionPerformed
+
 //    /**
 //     * @param args the command line arguments
 //     */
@@ -799,8 +810,8 @@ public class memberF extends javax.swing.JFrame {
         this.tWD.setText(mc.getWD());
         
         this.chSaved.setSelected(mc.getSaved().equals("Y"));
-        this.chBaptized.setSelected(mc.getSaved().equals("Y"));
-        this.chShared.setSelected(mc.getSaved().equals("Y")); 
+        this.chBaptized.setSelected(mc.getBaptized().equals("Y"));
+        this.chShared.setSelected(mc.getShared().equals("Y")); 
         
         this.loadMemberFamily(mc.getID());
     }

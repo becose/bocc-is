@@ -862,6 +862,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Baptism"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bBaptismActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

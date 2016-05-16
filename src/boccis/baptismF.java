@@ -5,7 +5,11 @@
  */
 package boccis;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import net.proteanit.sql.DbUtils;
 
 /**
  *
@@ -32,8 +36,8 @@ public class baptismF extends javax.swing.JFrame {
         this.dtBaptismDate.setDateFormatString("MM/dd/yyyy");
         
         if(this.isLoaded){
-            //this.loadTrainingTable();
-            //this.loadClassDates();
+            this.loadBaptismTable();
+            //this.loadBaptismDates();
             this.isLoaded = false;
         }        
     }
@@ -117,16 +121,14 @@ public class baptismF extends javax.swing.JFrame {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addGap(0, 8, Short.MAX_VALUE)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cbBaptism, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(cbBaptism, 0, 173, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -273,7 +275,14 @@ public class baptismF extends javax.swing.JFrame {
 //            }
 //        });
 //    }
+    public void loadBaptismTable(){
+        try {
+            this.tblBaptism.setModel(DbUtils.resultSetToTableModel(bc.getMembersNeedingBaptism()));
+        } catch (SQLException ex) {
+            Logger.getLogger(baptismF.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bClose;
     private javax.swing.JButton bConfirm;
