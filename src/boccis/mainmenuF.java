@@ -124,6 +124,11 @@ public class mainmenuF extends javax.swing.JFrame {
         jMenu1.add(bActivate);
 
         bBaptism.setText("Baptism");
+        bBaptism.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bBaptismActionPerformed(evt);
+            }
+        });
         jMenu1.add(bBaptism);
 
         jMenuBar1.add(jMenu1);
@@ -208,6 +213,15 @@ public class mainmenuF extends javax.swing.JFrame {
             Logger.getLogger(mainmenuF.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_bActivateActionPerformed
+
+    private void bBaptismActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bBaptismActionPerformed
+        try {
+            baptismF bf = new baptismF();
+            bf.setVisible(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(mainmenuF.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_bBaptismActionPerformed
 
     /**
      * @param args the command line arguments

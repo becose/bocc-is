@@ -5,6 +5,7 @@
  */
 package boccis;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -27,17 +28,17 @@ public class baptismF extends javax.swing.JFrame {
     /**
      * Creates new form baptismF
      */
-    public baptismF() {
+    public baptismF() throws SQLException {
         initComponents();
         this.setupForm();
     }
-    public void setupForm(){
+    public void setupForm() throws SQLException{
        this.setLocationRelativeTo(null); 
         this.dtBaptismDate.setDateFormatString("MM/dd/yyyy");
         
         if(this.isLoaded){
             this.loadBaptismTable();
-            //this.loadBaptismDates();
+            this.loadBaptismDates();
             this.isLoaded = false;
         }        
     }
@@ -111,11 +112,21 @@ public class baptismF extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tblBaptism.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblBaptismMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tblBaptism);
 
         jLabel2.setText("Baptism Dates ->");
 
         cbBaptism.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " " }));
+        cbBaptism.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbBaptismActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -156,6 +167,11 @@ public class baptismF extends javax.swing.JFrame {
         bSchedule.setText("Schedule");
 
         bConfirm.setText("Confirm Baptism");
+        bConfirm.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bConfirmActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -241,6 +257,49 @@ public class baptismF extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_bCloseActionPerformed
 
+    private void tblBaptismMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblBaptismMouseClicked
+        if(evt.getClickCount() == 1){
+            int iRow = this.tblBaptism.getSelectedRow();
+            //mc.outputBox("Current row: " + iRow);
+            if(iRow>-1){
+                int iMID = mmc.String2int(this.tblBaptism.getValueAt(iRow, 0).toString());
+                //mc.outputBox("Clicked ID : " + iLID);
+                this.iClickCount = 0;
+                mc.findMember(iMID);
+                if(notOnList(mc.getID())){
+                    this.alBaptismList.add(mc.getID());
+                    this.addMember2BaptismList(mc.getFullName());    
+                }                
+            }
+        }
+        evt.consume();
+    }//GEN-LAST:event_tblBaptismMouseClicked
+
+    private void cbBaptismActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbBaptismActionPerformed
+        //this.isLoaded = true;
+        if(!this.isLoaded){
+            String sComboValue = this.cbBaptism.getSelectedItem().toString().trim();
+            if(!sComboValue.equals("Not Attended")){
+                this.loadBaptismTable(sComboValue); 
+                this.bConfirm.setEnabled(true);
+            } else {
+                this.loadBaptismTable();
+                this.bConfirm.setEnabled(false);
+            }
+            this.isLoaded = false;
+        }
+    }//GEN-LAST:event_cbBaptismActionPerformed
+
+    private void bConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bConfirmActionPerformed
+        this.bConfirm.setEnabled(false);
+        String sDate = this.cbBaptism.getSelectedItem().toString().trim();
+        mmc.outputBox("Confirming attendance for Baptism dated "+sDate);
+        
+        if(!sDate.equals("Not Attended")){
+            bc.confirmBaptism(sDate);
+        }
+    }//GEN-LAST:event_bConfirmActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -283,6 +342,38 @@ public class baptismF extends javax.swing.JFrame {
         }
 
     }
+    public void loadBaptismTable(String sValue){
+        try {
+            this.tblBaptism.setModel(DbUtils.resultSetToTableModel(bc.getBaptismByDate(sValue)));
+        } catch (SQLException ex) {
+            Logger.getLogger(trainingF.class.getName()).log(Level.SEVERE, null, ex);
+        }             
+    }       
+    public void loadBaptismDates() throws SQLException{
+        ResultSet rs = bc.getBaptismDates();
+        this.cbBaptism.removeAllItems();
+        this.cbBaptism.addItem("Not Attended");
+        
+        while(rs.next()){
+            this.cbBaptism.addItem(rs.getString("baptism_date"));
+        }           
+    }
+    public void addMember2BaptismList(String sValue){
+      //this.tClassList.setText("");
+        this.sBaptismList += (sValue+ "\n");
+        this.tBaptismList.setText(this.sBaptismList);
+        mmc.outputBox("Class count: " + this.alBaptismList.size());        
+    }
+    public boolean notOnList(int iValue){
+        boolean isOK = true;
+        
+        if(this.alBaptismList.contains(iValue)){
+            isOK = false;
+            mmc.outputBox("WARNING: "+mc.getFullName()+" already on baptism list ....");
+        }
+        
+        return isOK;
+    }    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bClose;
     private javax.swing.JButton bConfirm;

@@ -112,4 +112,20 @@ public class baptismC {
       
         return rs;             
     }
+   public ResultSet getBaptismByDate(String sValue) throws SQLException{
+        Connection conn;
+        Statement stmt;
+        ResultSet rs;
+        //dataC mdc = new dataC();
+        conn = dc.connectDB();
+        stmt = conn.createStatement();     
+        String sql = "SELECT b.baptism_member_id AS MemberID, m.member_fullname AS Member "
+                   + "FROM baptism_tbl b "
+                   + "JOIN member_tbl m ON b.baptism_member_id=m.member_id "
+                   + "WHERE baptism_date='"+sValue+"'";    
+        //mmc.outputBox(sql);
+        rs = stmt.executeQuery(sql);
+      
+        return rs;            
+   }    
 }
