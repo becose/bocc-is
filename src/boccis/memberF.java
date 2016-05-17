@@ -713,8 +713,12 @@ public class memberF extends javax.swing.JFrame {
     }//GEN-LAST:event_bActivateActionPerformed
 
     private void bBaptismActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bBaptismActionPerformed
-        baptismF bf = new baptismF();
-        bf.setVisible(true);
+        try {
+            baptismF bf = new baptismF();
+            bf.setVisible(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(memberF.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
     }//GEN-LAST:event_bBaptismActionPerformed
 

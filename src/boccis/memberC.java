@@ -426,5 +426,27 @@ public class memberC {
             Logger.getLogger(memberC.class.getName()).log(Level.SEVERE, null, ex);
         }               
         return isUpdated;
-    }    
+    }   
+    public boolean confirmMemberBaptism(int iValue){
+        boolean isUpdated = false;
+        mmc.outputBox("Updating Member : " + this.getMemberInfo());
+        try {
+            Statement stmt;
+            //dataC dc = new dataC();
+            try (Connection conn = dc.connectDB()) {
+                stmt = conn.createStatement();
+                String sql = "UPDATE member_tbl SET " +
+                        "member_baptized = 'Y' " +
+                        "WHERE member_id = " + iValue;
+                //mmc.outputBox(sql);
+                stmt.executeUpdate(sql);
+                
+                mmc.outputBox("Member " + this.getMemberInfo() + " successfully updated...");
+            }
+            //mmc.outputBox("Database closed...");
+        } catch (SQLException ex) {
+            Logger.getLogger(memberC.class.getName()).log(Level.SEVERE, null, ex);
+        }               
+        return isUpdated;        
+    }
 }

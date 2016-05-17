@@ -7,7 +7,9 @@ package boccis;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import net.proteanit.sql.DbUtils;
@@ -165,6 +167,11 @@ public class baptismF extends javax.swing.JFrame {
         });
 
         bSchedule.setText("Schedule");
+        bSchedule.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bScheduleActionPerformed(evt);
+            }
+        });
 
         bConfirm.setText("Confirm Baptism");
         bConfirm.addActionListener(new java.awt.event.ActionListener() {
@@ -299,6 +306,22 @@ public class baptismF extends javax.swing.JFrame {
             bc.confirmBaptism(sDate);
         }
     }//GEN-LAST:event_bConfirmActionPerformed
+
+    private void bScheduleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bScheduleActionPerformed
+        Date dValue = this.dtBaptismDate.getDate();
+        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
+        bc.setBD(sdf.format(dValue));
+        mmc.messageBox(bc.getBD());
+        
+        for(int iMemberID : this.alBaptismList){
+            bc.setMI(iMemberID);
+            
+            if(bc.scheduleBaptism()){
+                mc.findMember(bc.getMI());
+                mmc.outputBox("Member "+mc.getFullName()+" successfully registered for class on "+bc.getBD());
+            }
+        }
+    }//GEN-LAST:event_bScheduleActionPerformed
 
     /**
      * @param args the command line arguments

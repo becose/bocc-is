@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -65,8 +66,22 @@ public class baptismC {
         }         
         return isSaved;
     }
-    public void confirmBaptism(String sValue){
+    public void confirmBaptism(String sValue) throws SQLException{
+        mmc.messageBox(sValue);
+
+        ResultSet rs = this.getBaptismByDate(sValue);
+        ArrayList<Integer> alMember = new ArrayList<>();
         
+        while(rs.next()){
+            alMember.add(rs.getInt("MemberID"));
+        }
+        //mmc.messageBox("Count "+ alMember.size());
+        
+        for(int iMember : alMember){
+            mc.findMember(iMember);
+            mc.setCD(sValue);
+            mc.confirmMemberBaptism(iMember);
+        }        
     }
     public ResultSet getBaptismDates() throws SQLException{
         Connection conn;
