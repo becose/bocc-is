@@ -303,7 +303,11 @@ public class baptismF extends javax.swing.JFrame {
         mmc.outputBox("Confirming attendance for Baptism dated "+sDate);
         
         if(!sDate.equals("Not Attended")){
-            bc.confirmBaptism(sDate);
+            try {
+                bc.confirmBaptism(sDate);
+            } catch (SQLException ex) {
+                Logger.getLogger(baptismF.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }//GEN-LAST:event_bConfirmActionPerformed
 

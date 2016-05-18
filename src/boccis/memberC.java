@@ -290,6 +290,36 @@ public class memberC {
         }             
         return isFound;
     }
+    public boolean check4Member(String sFValue, String sMValue, String sLValue){
+        boolean isFound = false;
+        try {
+            try (Connection conn = dc.connectDB()) {
+                Statement stmt = conn.createStatement();
+                String sql = "SELECT * FROM member_tbl WHERE member_fname='"+sFValue
+                        + "' AND member_mname='"+sMValue
+                        + "' AND member_lname='"+sLValue+"'";
+                ResultSet rs = stmt.executeQuery(sql);
+                
+                //this.loadMember(rs);
+                
+                //mmc.outputBox("Member ID: " + iValue + " - " +
+                //              this.getMemberInfo());
+                int iCount = 0;
+                while(rs.next()){
+                    iCount++;
+                }
+                if(iCount>0){
+                    isFound = true;
+                    mmc.outputBox("Call -> Find Member " + this.getMemberInfo() + " query successfully ran...");                    
+                }
+
+            }
+            //System.out.println("Database closed...");
+        } catch (SQLException ex) {
+            Logger.getLogger(memberC.class.getName()).log(Level.SEVERE, null, ex);
+        }             
+        return isFound;
+    }    
     public ResultSet getMembers() throws SQLException{
         Connection conn;
         Statement stmt;

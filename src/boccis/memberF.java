@@ -639,12 +639,17 @@ public class memberF extends javax.swing.JFrame {
     private void bSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bSaveActionPerformed
         this.getMemberData();
         
-        if(!mc.saveMember()){
-            mmc.outputBox("Error saving " + mc.getFullName() + "...");
+        if(!mc.check4Member(mc.getFN(),mc.getMN(),mc.getLN())){
+            if(!mc.saveMember()){
+                mmc.outputBox("Error saving " + mc.getFullName() + "...");
+            } else {
+                this.writeMemberData("Saving...");
+                mmc.outputBox("Member name: " + mc.getFullName());
+            } 
         } else {
-            this.writeMemberData("Saving...");
-        }
-        mmc.outputBox("Member name: " + mc.getFullName());
+            mmc.messageBox("Member information already recorded "+mc.getFullName());
+            this.clearMemberForm();
+        }  
     }//GEN-LAST:event_bSaveActionPerformed
 
     private void bDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bDeleteActionPerformed
