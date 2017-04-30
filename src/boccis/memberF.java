@@ -18,6 +18,7 @@ public class memberF extends javax.swing.JFrame {
     private int iClickCount = 0;
     
     boolean isLoaded = true;
+    boolean isClosing = false;
     /**
      * Creates new form memberF
      * @throws java.sql.SQLException
@@ -25,7 +26,7 @@ public class memberF extends javax.swing.JFrame {
     public memberF() throws SQLException {
         initComponents();
         this.setupForm();
-
+        
     }
     public void setupForm() throws SQLException{
         this.setLocationRelativeTo(null); 
@@ -234,6 +235,11 @@ public class memberF extends javax.swing.JFrame {
         jLabel2.setText("First name:");
 
         tFN.setToolTipText("Enter firstname");
+        tFN.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                tFNFocusLost(evt);
+            }
+        });
 
         tMN.setToolTipText("Enter middle name or initial");
 
@@ -242,8 +248,37 @@ public class memberF extends javax.swing.JFrame {
         jLabel4.setText("Last name:");
 
         tLN.setToolTipText("Enter lastname");
+        tLN.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                tLNFocusLost(evt);
+            }
+        });
 
         jLabel5.setText("Address:");
+
+        tSA.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                tSAFocusLost(evt);
+            }
+        });
+
+        tCY.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                tCYFocusLost(evt);
+            }
+        });
+
+        tST.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                tSTFocusLost(evt);
+            }
+        });
+
+        tZC.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                tZCFocusLost(evt);
+            }
+        });
 
         jLabel6.setText("City:");
 
@@ -632,6 +667,7 @@ public class memberF extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void bCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCloseActionPerformed
+        this.setClosing();
         this.setVisible(false);
     }//GEN-LAST:event_bCloseActionPerformed
 
@@ -725,6 +761,60 @@ public class memberF extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_bBaptismActionPerformed
+
+    private void tFNFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tFNFocusLost
+        if(!this.tFN.getText().trim().isEmpty() && this.isClosing==false){
+            if(!mmc.isValidWord(this.tFN.getText())){
+                mmc.messageBox("ERROR: You must enter a valid firstname");
+                this.tFN.grabFocus();
+            }
+        }
+    }//GEN-LAST:event_tFNFocusLost
+
+    private void tLNFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tLNFocusLost
+        if(!this.tLN.getText().trim().isEmpty() && this.isClosing==false){
+            if(!mmc.isValidWord(this.tLN.getText())){
+                mmc.messageBox("ERROR: You must enter a valid lastname");
+                this.tLN.grabFocus();
+            }
+        }
+    }//GEN-LAST:event_tLNFocusLost
+
+    private void tSAFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tSAFocusLost
+        if(!this.tSA.getText().trim().isEmpty() && this.isClosing==false){
+            if(!mmc.isValidAlphaNumeric(this.tSA.getText())){
+                mmc.messageBox("ERROR: You must enter a valid street address");
+                this.tSA.grabFocus();
+            }
+        }
+    }//GEN-LAST:event_tSAFocusLost
+
+    private void tCYFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tCYFocusLost
+        if(!this.tCY.getText().trim().isEmpty() && this.isClosing==false){
+            if(!mmc.isValidWord(this.tCY.getText())){
+                mmc.messageBox("ERROR: You must enter a valid city");
+                this.tCY.grabFocus();
+            }
+        }
+    }//GEN-LAST:event_tCYFocusLost
+
+    private void tSTFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tSTFocusLost
+        if(!this.tST.getText().trim().isEmpty() && this.isClosing==false){
+            if(!mmc.isValidState(this.tST.getText())){
+                mmc.messageBox("ERROR: You must enter a valid state");
+                this.tST.grabFocus();
+            }
+        }
+    }//GEN-LAST:event_tSTFocusLost
+
+    private void tZCFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tZCFocusLost
+        if(!this.tZC.getText().trim().isEmpty() && this.isClosing==false){
+            if(!mmc.isValidZipCode(this.tZC.getText())){
+                mmc.messageBox("ERROR: You must enter a valid zipcode");
+                this.tZC.grabFocus();
+            }
+        }
+    }//GEN-LAST:event_tZCFocusLost
 
 //    /**
 //     * @param args the command line arguments
@@ -865,6 +955,9 @@ public class memberF extends javax.swing.JFrame {
 //                       "       " + mc.getWP() + "(work)" + "\n" +
 //                       "       " + mc.getCP() + "(work)" + "\n\n";
         this.tNotes.setText(writingData);
+    }
+    public void setClosing(){
+        this.isClosing = true;
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bActivate;

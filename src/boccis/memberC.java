@@ -327,7 +327,7 @@ public class memberC {
         //dataC mdc = new dataC();
         conn = dc.connectDB();
         stmt = conn.createStatement();     
-        String sql = "SELECT * FROM member_tbl WHERE member_status='A'";            
+        String sql = "SELECT * FROM member_tbl WHERE member_status='A' ORDER BY member_joined";            
         rs = stmt.executeQuery(sql);
       
         return rs;      

@@ -501,6 +501,9 @@
               <Properties>
                 <Property name="toolTipText" type="java.lang.String" value="Enter firstname"/>
               </Properties>
+              <Events>
+                <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="tFNFocusLost"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="tMN">
               <Properties>
@@ -521,6 +524,9 @@
               <Properties>
                 <Property name="toolTipText" type="java.lang.String" value="Enter lastname"/>
               </Properties>
+              <Events>
+                <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="tLNFocusLost"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel5">
               <Properties>
@@ -528,12 +534,24 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="tSA">
+              <Events>
+                <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="tSAFocusLost"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="tCY">
+              <Events>
+                <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="tCYFocusLost"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="tST">
+              <Events>
+                <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="tSTFocusLost"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="tZC">
+              <Events>
+                <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="tZCFocusLost"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel6">
               <Properties>
