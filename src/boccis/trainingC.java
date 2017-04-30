@@ -106,7 +106,7 @@ public class trainingC {
         stmt = conn.createStatement();     
         String sql = "SELECT member_id AS MemberID, member_fullname AS Member "
                    + "FROM member_tbl "
-                   + "WHERE member_classdate='' OR member_classdate IS NULL"; 
+                   + "WHERE member_classdate='' OR member_classdate IS NULL ";
         //mmc.outputBox(sql);        
         rs = stmt.executeQuery(sql);
       

@@ -293,9 +293,11 @@ public class trainingF extends javax.swing.JFrame {
             if(!sComboValue.equals("Not Attended")){
                 this.loadTrainingTable(sComboValue); 
                 this.bConfirm.setEnabled(true);
+                this.bSchedule.setEnabled(false);
             } else {
                 this.loadTrainingTable();
                 this.bConfirm.setEnabled(false);
+                this.bSchedule.setEnabled(true);
             }
             this.isLoaded = false;
         }

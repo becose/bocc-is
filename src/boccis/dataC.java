@@ -17,7 +17,7 @@ public class dataC {
     methodC mmc = new methodC();
     boolean notSuccessful = true;
     //String tryLocation = "jdbc:sqlite:C:\\SysDev\\BOCCIS\\bocc.db";
-    String tryLocation = "jdbc:sqlite:/Users/tommybennett/SysDev/BOCCIS/bocc.db";
+    String tryLocation = "jdbc:sqlite:/Users/tommybennett/SysDev/BOCCSystem/bocc.db";
 
         public Connection connectDB(){
         Connection conn = null;
