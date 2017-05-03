@@ -685,6 +685,15 @@ public class memberF extends javax.swing.JFrame {
             mmc.messageBox("Member information already recorded "+mc.getFullName());
             this.clearMemberForm();
         }  
+        this.isLoaded = true;
+        if(this.isLoaded){
+            try {
+                this.loadMemberList();
+            } catch (SQLException ex) {
+                Logger.getLogger(memberF.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            this.isLoaded = false;
+        }        
     }//GEN-LAST:event_bSaveActionPerformed
 
     private void bDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bDeleteActionPerformed

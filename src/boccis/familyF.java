@@ -249,7 +249,23 @@ public class familyF extends javax.swing.JFrame {
                                         +" Date: "+fc.getDT());                        
                         }                    
                     }
-                    if(fc.getRI()==3){ // 3 - Parent to 2 - Child
+                    if(fc.getRI()==2){ // 2 - Child to 3 - Parent to Reverse Link
+                        int tempMI = fc.getMI();
+                        int tempCI = fc.getCI();
+
+                        fc.setCI(tempMI);
+                        fc.setMI(tempCI);
+                        fc.setRI(3);
+                        fc.setRN("Parent");
+
+                        if(fc.linkFamily()){
+                            mmc.outputBox("Member -> "+fc.getMemberName(fc.getMI())
+                                        +" Connected -> "+fc.getMemberName(fc.getCI())
+                                        +" Relation -> "+fc.getRN()
+                                        +" Date: "+fc.getDT());                        
+                        } 
+                    }                    
+                    if(fc.getRI()==3){ // 3 - Parent to 2 - Child to Reverse Link
                         int tempMI = fc.getMI();
                         int tempCI = fc.getCI();
 
